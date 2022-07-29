@@ -1,9 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
-class Principal extends StatelessWidget {
+class Principal extends StatefulWidget {
   const Principal({Key? key}) : super(key: key);
 
+  @override
+  State<Principal> createState() => _PrincipalState();
+}
+
+class _PrincipalState extends State<Principal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
