@@ -20,6 +20,8 @@ class MyApp extends StatelessWidget {
       title: 'Reservaciones',
       theme: ThemeData(
         primaryColor: Color(0xff800040),
+        primaryColorLight: Color(0xffb43f6b),
+        primaryColorDark: Color(0xff4e001a),
         accentColor: Color(0xff9e9e9e),   
       ),
       home: Principal(),
