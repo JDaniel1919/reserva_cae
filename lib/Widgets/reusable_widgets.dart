@@ -108,3 +108,86 @@ Container InicioSesionButton(
     ),
   );
 }
+
+class BotonMenu extends StatelessWidget {
+  const BotonMenu({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      // When the child is tapped, show a snackbar.
+      onTap: () {
+        const snackBar = SnackBar(content: Text('Tap'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      },
+      // The custom button
+      child: Container(
+        padding: const EdgeInsets.all(15.0),
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 219, 149, 102),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: const Text('My Button'),
+      ),
+    );
+  }
+}
+
+GestureDetector BotonPrinc(BuildContext context, String TextoPrinc,
+    String TextoSec, Color ColorBoton) {
+  return GestureDetector(
+    // When the child is tapped, show a snackbar.
+    onTap: () {
+      const snackBar = SnackBar(content: Text('Tap'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    },
+    // The custom button
+    child: Container(
+      padding: const EdgeInsets.all(15.0),
+      margin: const EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+        color: ColorBoton,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: 
+      Row(children: <Widget>[
+        Container(
+          child: Center(
+            child: Icon(Icons.access_alarm),
+          ),
+          margin: const EdgeInsets.all(5.0),
+          padding: const EdgeInsets.all(5.0),
+          alignment: Alignment.centerLeft,
+          decoration: BoxDecoration(
+            color: Colors.amber,
+          ),
+          width: 75.0,
+          height: 100.0,
+        ),
+        SizedBox(
+              width: 75,
+            ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topCenter,
+              child: Text(TextoPrinc),
+              widthFactor: MediaQuery.of(context).padding.bottom,
+              heightFactor: MediaQuery.of(context).padding.bottom,
+            ),
+            SizedBox(
+              height: 0,
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Text(TextoSec),
+              widthFactor: MediaQuery.of(context).padding.left,
+              heightFactor: MediaQuery.of(context).padding.left,
+            ),
+          ],
+        )
+      ]),
+    ),
+  );
+}

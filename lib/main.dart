@@ -24,12 +24,14 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xff800040),
         primaryColorLight: Color(0xffb43f6b),
         primaryColorDark: Color(0xff4e001a),
+        //accentColor: Color(0xffe0e0e0),
         accentColor: Color(0xff9e9e9e),
         appBarTheme: AppBarTheme(
           color: Color(0xff800040),
         ),
       ),
-      home: SplashSC(),
+      //home: SplashSC(),
+      home: Principal(),
     );
   }
 }
