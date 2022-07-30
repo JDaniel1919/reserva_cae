@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
+import 'package:reserva_cae/Pantallas/Registro.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'Pantallas/Login.dart';
 import 'Pantallas/Principal.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/src/material/text_theme.dart';
 
 void main() {
-  //debugPaintSizeEnabled=true;
+  debugPaintSizeEnabled=true;
   runApp(const MyApp());
 }
 

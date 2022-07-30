@@ -10,14 +10,14 @@ Image logoWidget(String imageName) {
   );
 }
 
-class rsTextField extends StatefulWidget {
-  const rsTextField({Key? key}) : super(key: key);
+class TextFieldPass extends StatefulWidget {
+  const TextFieldPass({Key? key}) : super(key: key);
 
   @override
-  State<rsTextField> createState() => _rsTextFieldState();
+  State<TextFieldPass> createState() => _TextFieldPassState();
 }
 
-class _rsTextFieldState extends State<rsTextField> {
+class _TextFieldPassState extends State<TextFieldPass> {
   bool _isObscure = true;
   @override
   Widget build(BuildContext context) {

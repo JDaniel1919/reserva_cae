@@ -1,3 +1,4 @@
+
 import '/Widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -17,38 +18,45 @@ class _LoginState extends State<Login> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: Color.fromARGB(500, 128, 0, 64)),
-        child: SingleChildScrollView(
-          child: Padding(
+        child: Padding(
               padding: EdgeInsets.fromLTRB(
-                  20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+                  20, MediaQuery.of(context).size.height * 0.05,
+                   20, MediaQuery.of(context).size.height * 0.05),
               child: Column(
                 children: <Widget>[
                   logoWidget("assets/LogoB.png"),
                   const SizedBox(
-                    height: 30,
+                    height: 55,
                   ),
                   reusableTextField("Correo electronico", Icons.email_outlined, false,
                       _emailTextController),
                   SizedBox(
                     height: 20,
                   ),
-                  rsTextField(),
+                  TextFieldPass(),
                   SizedBox(
                     height: 20,
                   ),
                   InicioSesionButton(context, true, () {}),
-                  BotonInicioSesion()
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextoRegistro()
                 ],
-              )),
-        ),
+              )
+            ),
       ),
+      resizeToAvoidBottomInset: false
     );
   }
 
-  Row BotonInicioSesion() {
+  Row TextoRegistro() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Padding(padding: EdgeInsets.fromLTRB(
+                  0, MediaQuery.of(context).size.height * 0, 0, 0)
+                  ),
         const Text("¿No tienes una cuenta? ",
             style: TextStyle(color: Colors.white70)),
         GestureDetector(
