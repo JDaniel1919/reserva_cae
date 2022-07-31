@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
+import 'package:reserva_cae/Pantallas/Computadoras.dart';
 import 'package:reserva_cae/Pantallas/Registro.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'Pantallas/Login.dart';
@@ -48,7 +49,7 @@ class _SplashSCState extends State<SplashSC> {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 5,
-      navigateAfterSeconds: Login(),
+      navigateAfterSeconds: Principal(),
       image: Image.asset("assets/LogoC.png"),
       backgroundColor: Color(0xffffffff),
       gradientBackground: LinearGradient(
