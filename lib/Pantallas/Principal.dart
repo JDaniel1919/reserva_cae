@@ -28,11 +28,13 @@ class _PrincipalState extends State<Principal> {
                 MediaQuery.of(context).size.height * 0.05),
             child: Column(
               children: <Widget>[
-                const Text('Elige un sistema de reserva',
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, 
-                        fontSize: 18.0)
-                        ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Elige un sistema de reserva',
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18.0)),
+                ),
                 SizedBox(
                   height: 15,
                 ),
@@ -55,6 +57,39 @@ class _PrincipalState extends State<Principal> {
                     Color(0xffd5f5e3),
                     Colors.green,
                     Color(0xff4e001a)),
+                SizedBox(
+                  height: 15,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Concurrencia',
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18.0)),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  children: [
+                    Concurrencia(
+                        context,
+                        "Alta",
+                        "Cubiculos",
+                        Icons.book_outlined,
+                        Color(0xfffadbd8),
+                        Colors.orangeAccent,
+                        Color(0xff4e001a)),
+                    Concurrencia(
+                        context,
+                        "Baja",
+                        "Computadoras",
+                        Icons.computer_outlined,
+                        Color(0xffd5f5e3),
+                        Colors.green,
+                        Color(0xff4e001a)),
+                  ],
+                )
               ],
             )),
       ),

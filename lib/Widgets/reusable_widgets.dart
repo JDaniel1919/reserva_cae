@@ -109,30 +109,6 @@ Container InicioSesionButton(
   );
 }
 
-class BotonMenu extends StatelessWidget {
-  const BotonMenu({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      // When the child is tapped, show a snackbar.
-      onTap: () {
-        const snackBar = SnackBar(content: Text('Tap'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      },
-      // The custom button
-      child: Container(
-        padding: const EdgeInsets.all(15.0),
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 219, 149, 102),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: const Text('My Button'),
-      ),
-    );
-  }
-}
-
 GestureDetector BotonPrinc(
     BuildContext context,
     String TextoPrinc,
@@ -206,6 +182,65 @@ GestureDetector BotonPrinc(
           ],
         )
       ]),
+    ),
+  );
+}
+
+Container Concurrencia(BuildContext context, String TextoPrinc, String TextoSec,
+    IconData icon, Color ColorBoton, Color ColorIcon, Color ColorBorder) {
+  return Container(
+    width: 140.0,
+    height: 220.0,
+    padding: const EdgeInsets.all(6.0),
+    margin: const EdgeInsets.all(15.0),
+    decoration: BoxDecoration(
+      color: ColorBoton,
+      border: Border.all(color: ColorBorder, width: 2.5),
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+    child: Column(
+      children: <Widget>[
+        Container(
+          child: Center(
+            child: Icon(
+              icon,
+              color: Colors.white70,
+              size: 30,
+            ),
+          ),
+          margin: const EdgeInsets.all(3.0),
+          padding: const EdgeInsets.all(1.0),
+          alignment: Alignment.centerLeft,
+          decoration: ShapeDecoration(
+              color: ColorIcon,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              )),
+          width: 85.0,
+          height: 85.0,
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Text(
+            TextoSec,
+            style: TextStyle(color: Colors.black, fontSize: 16),
+          ),
+          widthFactor: 0,
+          heightFactor: 0,
+        ),
+        SizedBox(
+          height: 50,
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Text(TextoPrinc),
+          widthFactor: 0,
+          heightFactor: 0,
+        ),
+      ],
     ),
   );
 }
