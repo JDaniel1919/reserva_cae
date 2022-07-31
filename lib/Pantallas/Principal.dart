@@ -30,8 +30,31 @@ class _PrincipalState extends State<Principal> {
               children: <Widget>[
                 const Text('Elige un sistema de reserva',
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
-                BotonPrinc(context, "Reserva un cubiculo de estudio", "Cubiculos", Colors.blue)
+                        TextStyle(fontWeight: FontWeight.bold, 
+                        fontSize: 18.0)
+                        ),
+                SizedBox(
+                  height: 15,
+                ),
+                BotonPrinc(
+                    context,
+                    "Reserva un cubiculo de estudio",
+                    "Cubiculos",
+                    Icons.book_outlined,
+                    Color(0xfffadbd8),
+                    Colors.orangeAccent,
+                    Color(0xff4e001a)),
+                SizedBox(
+                  height: 15,
+                ),
+                BotonPrinc(
+                    context,
+                    "Reserva un equipo de computo",
+                    "Computadoras",
+                    Icons.computer_outlined,
+                    Color(0xffd5f5e3),
+                    Colors.green,
+                    Color(0xff4e001a)),
               ],
             )),
       ),

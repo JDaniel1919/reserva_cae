@@ -8,7 +8,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/src/material/text_theme.dart';
 
 void main() {
-  debugPaintSizeEnabled=true;
+  debugPaintSizeEnabled=false;
   runApp(const MyApp());
 }
 

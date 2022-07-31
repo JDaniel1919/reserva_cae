@@ -133,8 +133,14 @@ class BotonMenu extends StatelessWidget {
   }
 }
 
-GestureDetector BotonPrinc(BuildContext context, String TextoPrinc,
-    String TextoSec, Color ColorBoton) {
+GestureDetector BotonPrinc(
+    BuildContext context,
+    String TextoPrinc,
+    String TextoSec,
+    IconData icon,
+    Color ColorBoton,
+    Color ColorIcon,
+    Color ColorBorder) {
   return GestureDetector(
     // When the child is tapped, show a snackbar.
     onTap: () {
@@ -143,47 +149,59 @@ GestureDetector BotonPrinc(BuildContext context, String TextoPrinc,
     },
     // The custom button
     child: Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(6.0),
       margin: const EdgeInsets.all(15.0),
       decoration: BoxDecoration(
         color: ColorBoton,
+        border: Border.all(color: ColorBorder, width: 2.5),
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: 
-      Row(children: <Widget>[
+      child: Row(children: <Widget>[
         Container(
           child: Center(
-            child: Icon(Icons.access_alarm),
+            child: Icon(
+              icon,
+              color: Colors.white70,
+              size: 30,
+            ),
           ),
-          margin: const EdgeInsets.all(5.0),
-          padding: const EdgeInsets.all(5.0),
+          margin: const EdgeInsets.all(3.0),
+          padding: const EdgeInsets.all(1.0),
           alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Colors.amber,
-          ),
-          width: 75.0,
-          height: 100.0,
+          decoration: ShapeDecoration(
+              color: ColorIcon,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              )),
+          width: 85.0,
+          height: 85.0,
         ),
         SizedBox(
-              width: 75,
-            ),
+          width: 75,
+        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Align(
-              alignment: Alignment.topCenter,
+              alignment: Alignment(-0.35, -2),
               child: Text(TextoPrinc),
-              widthFactor: MediaQuery.of(context).padding.bottom,
-              heightFactor: MediaQuery.of(context).padding.bottom,
+              widthFactor: 0,
+              heightFactor: 0,
             ),
             SizedBox(
               height: 0,
             ),
             Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(TextoSec),
-              widthFactor: MediaQuery.of(context).padding.left,
-              heightFactor: MediaQuery.of(context).padding.left,
+              alignment: Alignment(-0.4, 0.75),
+              child: Text(
+                TextoSec,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22),
+              ),
+              widthFactor: 0,
+              heightFactor: 0,
             ),
           ],
         )

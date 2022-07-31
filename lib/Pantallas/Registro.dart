@@ -30,7 +30,7 @@ class _RegistroState extends State<Registro> {
                   ),
                   reusableTextField("Nombre", Icons.person_outline,false,
                       _NombreTextController),
-                   SizedBox(
+                  SizedBox(
                     height: 15,
                   ),   
                   reusableTextField("Correo electronico", Icons.email_outlined, false,
