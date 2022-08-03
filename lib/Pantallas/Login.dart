@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 20,
                   ),
-                  InicioSesionButton(context, true, () {}),
+                  BotonLogin(context, true, () {}),
                   SizedBox(
                     height: 5,
                   ),

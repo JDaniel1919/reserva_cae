@@ -80,8 +80,7 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
   );
 }
 
-Container InicioSesionButton(
-    BuildContext context, bool isLogin, Function onTap) {
+Container BotonLogin(BuildContext context, bool isLogin, Function onTap) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 50,
@@ -109,6 +108,22 @@ Container InicioSesionButton(
   );
 }
 
+//Solo para copypaste en nueva pantallas
+Container FondoPantallas(BuildContext context) {
+  return Container(
+    width: MediaQuery.of(context).size.width,
+    height: MediaQuery.of(context).size.height,
+    decoration: BoxDecoration(color: Color(0xffe0e0e0)),
+    child: Padding(
+      padding: EdgeInsets.fromLTRB(
+          20,
+          MediaQuery.of(context).size.height * 0.02,
+          20,
+          MediaQuery.of(context).size.height * 0.05),
+    ),
+  );
+}
+
 GestureDetector BotonPrinc(
     BuildContext context,
     String TextoPrinc,
@@ -118,15 +133,14 @@ GestureDetector BotonPrinc(
     Color ColorIcon,
     Color ColorBorder) {
   return GestureDetector(
-    // When the child is tapped, show a snackbar.
     onTap: () {
       const snackBar = SnackBar(content: Text('Tap'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     },
     // The custom button
     child: Container(
-      padding: const EdgeInsets.all(6.0),
-      margin: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(3.0),
+      margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         color: ColorBoton,
         border: Border.all(color: ColorBorder, width: 2.5),
@@ -186,11 +200,17 @@ GestureDetector BotonPrinc(
   );
 }
 
-Container Concurrencia(BuildContext context, String TextoPrinc, String TextoSec,
-    IconData icon, Color ColorBoton, Color ColorIcon, Color ColorBorder) {
+Container Disponibilidad(
+    BuildContext context,
+    String TextoPrinc,
+    String TextoSec,
+    IconData icon,
+    Color ColorBoton,
+    Color ColorIcon,
+    Color ColorBorder) {
   return Container(
-    width: 140.0,
-    height: 220.0,
+    width: 132.0,
+    height: 140.0,
     padding: const EdgeInsets.all(6.0),
     margin: const EdgeInsets.all(15.0),
     decoration: BoxDecoration(
@@ -205,7 +225,7 @@ Container Concurrencia(BuildContext context, String TextoPrinc, String TextoSec,
             child: Icon(
               icon,
               color: Colors.white70,
-              size: 30,
+              size: 25,
             ),
           ),
           margin: const EdgeInsets.all(3.0),
@@ -216,11 +236,8 @@ Container Concurrencia(BuildContext context, String TextoPrinc, String TextoSec,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(32.0),
               )),
-          width: 85.0,
-          height: 85.0,
-        ),
-        SizedBox(
-          height: 10,
+          width: 60.0,
+          height: 60.0,
         ),
         Align(
           alignment: Alignment.topCenter,
@@ -232,7 +249,7 @@ Container Concurrencia(BuildContext context, String TextoPrinc, String TextoSec,
           heightFactor: 0,
         ),
         SizedBox(
-          height: 50,
+          height: 30,
         ),
         Align(
           alignment: Alignment.topCenter,
@@ -241,6 +258,137 @@ Container Concurrencia(BuildContext context, String TextoPrinc, String TextoSec,
           heightFactor: 0,
         ),
       ],
+    ),
+  );
+}
+
+Drawer DrawerP(BuildContext context) {
+  return Drawer(
+    child: ListView(
+      // Important: Remove any padding from the ListView.
+      padding: EdgeInsets.zero,
+      children: [
+        DrawerHeader(
+          decoration: BoxDecoration(
+            color: Color(0xffbdbdbd),
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: 8.0,
+                left: 4.0,
+                child: Text(
+                  "Reservaciones",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
+              )
+            ],
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.circle_outlined),
+          title: const Text('Reservaciones activas'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.history),
+          title: const Text('Historial'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        Divider(
+          color: Color(0xffbdbdbd),
+          thickness: 1,
+          endIndent: 10,
+        ),
+        ListTile(
+          leading: Icon(Icons.settings_outlined),
+          title: const Text('Configuracion'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.help_outline),
+          title: const Text('Ayuda'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.accessibility_outlined),
+          title: const Text('Acerca de nosotros'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.logout_outlined,
+            color: Colors.red,
+          ),
+          title: const Text(
+            'Cerrar sesión',
+            style: TextStyle(color: Colors.red, fontSize: 18),
+          ),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    ),
+  );
+}
+
+BottomAppBar AppBarInf(BuildContext context){
+  return BottomAppBar(
+        color: Color(0xffb43f6b),
+        shape: const CircularNotchedRectangle(),
+        child: Container(
+          height: 60.0,
+          child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.apps_outlined,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.person_outline,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+              ]
+            ),
+        ),
+  );
+}
+
+Container BotonCompu(BuildContext, IconData icon, String texto){
+  return Container(
+    color: Color(0xffe0e0e0),
+    child: Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 10),
+          child: Center(
+            child: Icon(icon, size: 30)
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 10),
+          child: Text(texto),
+        )
+      ]
     ),
   );
 }

@@ -46,7 +46,7 @@ class _RegistroState extends State<Registro> {
                   SizedBox(
                     height: 25,
                   ),
-                  InicioSesionButton(context, false, () {}),
+                  BotonLogin(context, false, () {}),
                   SizedBox(
                     height: 5,
                   ),

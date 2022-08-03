@@ -23,21 +23,37 @@ class _PrincipalState extends State<Principal> {
         child: Padding(
             padding: EdgeInsets.fromLTRB(
                 20,
-                MediaQuery.of(context).size.height * 0.03,
+                MediaQuery.of(context).size.height * 0.02,
                 20,
                 MediaQuery.of(context).size.height * 0.05),
             child: Column(
               children: <Widget>[
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text('Elige un sistema de reserva',
-                      textAlign: TextAlign.end,
+                  child: Text('Elige una opción',
+                      textAlign: TextAlign.start,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 18.0)),
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 5,
                 ),
+                BotonPrinc(
+                    context,
+                    "Reserva un equipo de computo",
+                    "Imprimir",
+                    Icons.print_outlined,
+                    Color(0xffd5f5e3),
+                    Colors.green,
+                    Colors.greenAccent),
+                BotonPrinc(
+                    context,
+                    "Reserva un equipo de computo",
+                    "Computadoras",
+                    Icons.computer_outlined,
+                    Color(0xffd5f5e3),
+                    Colors.green,
+                    Colors.greenAccent),
                 BotonPrinc(
                     context,
                     "Reserva un cubiculo de estudio",
@@ -47,22 +63,11 @@ class _PrincipalState extends State<Principal> {
                     Colors.orangeAccent,
                     Colors.deepOrangeAccent),
                 SizedBox(
-                  height: 0,
-                ),
-                BotonPrinc(
-                    context,
-                    "Reserva un equipo de computo",
-                    "Computadoras",
-                    Icons.computer_outlined,
-                    Color(0xffd5f5e3),
-                    Colors.green,
-                    Colors.greenAccent),
-                SizedBox(
-                  height: 15,
+                  height: 5,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text('Concurrencia',
+                  child: Text('Disponibilidad',
                       textAlign: TextAlign.end,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 18.0)),
@@ -71,8 +76,10 @@ class _PrincipalState extends State<Principal> {
                   height: 10,
                 ),
                 Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Concurrencia(
+                    Disponibilidad(
                         context,
                         "Alta",
                         "Cubiculos",
@@ -80,7 +87,7 @@ class _PrincipalState extends State<Principal> {
                         Color(0xfffadbd8),
                         Colors.orangeAccent,
                         Color(0xff4e001a)),
-                    Concurrencia(
+                    Disponibilidad(
                         context,
                         "Baja",
                         "Computadoras",
@@ -91,36 +98,12 @@ class _PrincipalState extends State<Principal> {
                   ],
                 )
               ],
-            )),
+            )
+            ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Color(0xffb43f6b),
-        shape: const CircularNotchedRectangle(),
-        child: Container(
-          height: 65.0,
-          child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.apps_outlined,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.person_outline,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                ),
-              ]),
-        ),
-      ),
+      bottomNavigationBar: AppBarInf(context),
       floatingActionButton: FloatingActionButton(
-        tooltip: 'Escanear codigo QR',
+        tooltip: 'Mostrar codigo QR',
         onPressed: () {},
         child: const Icon(
           Icons.qr_code_outlined,
@@ -129,79 +112,7 @@ class _PrincipalState extends State<Principal> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       extendBody: true,
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color(0xffbdbdbd),
-              ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    bottom: 8.0,
-                    left: 4.0,
-                    child: Text(
-                      "Reservaciones",
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.circle_outlined),
-              title: const Text('Reservaciones activas'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.history),
-              title: const Text('Historial'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            Divider(
-              color: Color(0xffbdbdbd),
-              thickness: 1,
-              endIndent: 10,
-            ),
-            ListTile(
-              leading: Icon(Icons.settings_outlined),
-              title: const Text('Configuracion'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.help_outline),
-              title: const Text('Ayuda'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.accessibility_outlined),
-              title: const Text('Acerca de nosotros'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.logout_outlined, color: Colors.red,),
-              title: const Text('Cerrar sesión', style: TextStyle(color: Colors.red, fontSize: 18),),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            
-          ],
-        ),
-      ),
+      drawer: DrawerP(context),
     );
   }
 }
