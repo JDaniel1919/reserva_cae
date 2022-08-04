@@ -92,7 +92,7 @@ class _ComputadorasState extends State<Computadoras> {
                       for (var i = 1; i <= 12; i++)
                         GestureDetector(
                           onTap: () {},
-                          child: BotonCompu(
+                          child: BotonReserva(
                               context, Icons.computer, "C" + i.toString()),
                         ),
                     ],

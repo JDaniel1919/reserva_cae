@@ -373,7 +373,7 @@ BottomAppBar AppBarInf(BuildContext context){
   );
 }
 
-Container BotonCompu(BuildContext, IconData icon, String texto){
+Container BotonReserva(BuildContext, IconData icon, String texto){
   return Container(
     color: Color(0xffe0e0e0),
     child: Column(
