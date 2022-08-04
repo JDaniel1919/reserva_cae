@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Computadoras extends StatefulWidget {
   Computadoras({Key? key}) : super(key: key);
@@ -10,6 +11,8 @@ class Computadoras extends StatefulWidget {
 }
 
 class _ComputadorasState extends State<Computadoras> {
+  CarouselController buttonCarouselController = CarouselController();
+  int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,23 +68,66 @@ class _ComputadorasState extends State<Computadoras> {
               SizedBox(
                 height: 15,
               ),
-              Expanded(
-                child: GridView.count(
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  crossAxisCount: 4,
-                  children: <Widget>[
-                    for(var i = 1;i<=12;i++) GestureDetector(
-                      onTap: () {},
-                      child: BotonCompu(context, Icons.computer, "C"+ i.toString()),
-                    ),
-                  ],
+              CarouselSlider.builder(
+                itemCount: 2,
+                carouselController: buttonCarouselController,
+                options: CarouselOptions(
+                  height: 300,
+                  viewportFraction: 1,
+                  initialPage: 0,
+                  reverse: false,
+                  enlargeCenterPage: true,
+                  scrollDirection: Axis.horizontal,
+                  onPageChanged: (index, reason) =>
+                      setState(() => activeIndex = index),
+                ),
+                itemBuilder:
+                    (BuildContext context, int itemIndex, int pageViewIndex) =>
+                        Expanded(
+                  child: GridView.count(
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    crossAxisCount: 4,
+                    children: <Widget>[
+                      for (var i = 1; i <= 12; i++)
+                        GestureDetector(
+                          onTap: () {},
+                          child: BotonCompu(
+                              context, Icons.computer, "C" + i.toString()),
+                        ),
+                    ],
+                  ),
                 ),
               ),
+              buildindicator(),        
+              // Expanded(
+              //   child: GridView.count(
+              //     crossAxisSpacing: 10,
+              //     mainAxisSpacing: 10,
+              //     crossAxisCount: 4,
+              //     children: <Widget>[
+              //       for(var i = 1;i<=12;i++) GestureDetector(
+              //         onTap: () {},
+              //         child: BotonCompu(context, Icons.computer, "C"+ i.toString()),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ])),
       ),
       drawer: DrawerP(context),
+      bottomNavigationBar: AppBarInf(context),
       //bottomNavigationBar: AppBarInf(context),
     );
   }
+
+  Widget buildindicator() => AnimatedSmoothIndicator(
+        activeIndex: activeIndex,
+        count: 2,
+        effect: WormEffect(
+          activeDotColor: Color(0xff800040),
+          dotWidth: 10,
+          dotHeight: 10,
+        ),
+      );
 }
