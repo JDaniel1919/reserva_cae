@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       //home: SplashSC(),
-      home: Computadoras(),
+      home: Principal(),
     );
   }
 }

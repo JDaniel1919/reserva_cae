@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Widgets/reusable_widgets.dart';
+import 'package:reserva_cae/Widgets/reusable_widgets2.dart';
 
 class Cubiculos extends StatefulWidget {
   Cubiculos({Key? key}) : super(key: key);

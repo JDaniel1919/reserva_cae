@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/Widgets/reusable_widgets.dart';
+import '/Widgets/reusable_widgets2.dart';
 
 class Principal extends StatefulWidget {
   const Principal({Key? key}) : super(key: key);
@@ -97,13 +98,57 @@ class _PrincipalState extends State<Principal> {
                   ],
                 )
               ],
-            )
-            ),
+            )),
       ),
       bottomNavigationBar: AppBarInf(context),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Mostrar codigo QR',
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              builder: (BuildContext context) {
+                return Container(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 5,
+                        width: 25,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black12, width: 2.5),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 25,
+                      ),
+                      Text("Escanea tu código QR",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        height: 250,
+                        width: 250,
+                        color: Colors.black45,
+                      ),
+                      SizedBox(
+                        height: 25,
+                      ),
+                      Text("Tiempo restante: ",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.normal)),
+                    ],
+                  ),
+                );
+              });
+        },
         child: const Icon(
           Icons.qr_code_outlined,
           color: Colors.black,

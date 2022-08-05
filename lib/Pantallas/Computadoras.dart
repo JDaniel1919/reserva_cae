@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets.dart';
+import 'package:reserva_cae/Widgets/reusable_widgets2.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -58,12 +59,25 @@ class _ComputadorasState extends State<Computadoras> {
               SizedBox(
                 height: 15,
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text('Computadoras',
-                    textAlign: TextAlign.end,
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0)),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Computadoras',
+                        textAlign: TextAlign.end,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18.0)),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Sala ' + (activeIndex + 1).toString(),
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18.0)),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 15,
@@ -91,7 +105,8 @@ class _ComputadorasState extends State<Computadoras> {
                     children: <Widget>[
                       for (var i = 1; i <= 12; i++)
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                          },
                           child: BotonReserva(
                               context, Icons.computer, "C" + i.toString()),
                         ),
@@ -99,7 +114,8 @@ class _ComputadorasState extends State<Computadoras> {
                   ),
                 ),
               ),
-              buildindicator(),        
+              buildindicator(),
+
               // Expanded(
               //   child: GridView.count(
               //     crossAxisSpacing: 10,
@@ -116,7 +132,6 @@ class _ComputadorasState extends State<Computadoras> {
             ])),
       ),
       drawer: DrawerP(context),
-      bottomNavigationBar: AppBarInf(context),
       //bottomNavigationBar: AppBarInf(context),
     );
   }
