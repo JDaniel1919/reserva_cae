@@ -37,7 +37,9 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 20,
                   ),
-                  BotonLogin(context, true, () {}),
+                  BotonLogin(context, true, () {
+                    Navigator.pushNamed(context, '/Principal');
+                  }),
                   SizedBox(
                     height: 5,
                   ),
@@ -60,6 +62,9 @@ class _LoginState extends State<Login> {
         const Text("¿No tienes una cuenta? ",
             style: TextStyle(color: Colors.white70)),
         GestureDetector(
+          onTap: (){
+            Navigator.pushNamed(context, '/Registro');
+          },
           child: const Text(
             "Registrate",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
