@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Pantallas/Computadoras.dart';
 import 'package:reserva_cae/Pantallas/Cubiculos.dart';
+import 'package:reserva_cae/Pantallas/Perfil.dart';
 import 'package:reserva_cae/Pantallas/Registro.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'Pantallas/Login.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       //home: SplashSC(),
-      home: Principal(),
+      home: Perfil(),
     );
   }
 }

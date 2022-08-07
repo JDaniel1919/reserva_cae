@@ -236,22 +236,49 @@ Container Disponibilidad(
   );
 }
 
-Container BotonReserva(BuildContext, IconData icon, String texto){
+Container BotonReserva(BuildContext, IconData icon, String texto) {
   return Container(
     color: Color(0xffe0e0e0),
-    child: Column(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: 10),
-          child: Center(
-            child: Icon(icon, size: 30)
-          ),
+    child: Column(children: <Widget>[
+      Container(
+        margin: EdgeInsets.only(top: 10),
+        child: Center(child: Icon(icon, size: 30)),
+      ),
+      Container(
+        margin: EdgeInsets.only(top: 10),
+        child: Text(texto),
+      )
+    ]),
+  );
+}
+
+GestureDetector EditDatos(
+    BuildContext context, String Texto1, String Texto2, bool isPasswordType) {
+      int len = Texto2.length;
+      if (isPasswordType){
+        Texto2 = "*"*len;
+      }
+  return GestureDetector(
+    onTap: () {
+      const snackBar = SnackBar(content: Text('Tap'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    },
+    child: Container(
+      margin: EdgeInsets.only(left: 15),
+      color: Colors.transparent,
+      height: 75,
+      width: MediaQuery.of(context).size.width,
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Align(alignment: Alignment.centerLeft,child: Text(Texto1, style: TextStyle(color: Colors.black54, fontSize: 16))), 
+            Align(alignment: Alignment.centerLeft,child: Text(Texto2, style: TextStyle(color: Colors.black, fontSize: 18)))
+          ],
         ),
-        Container(
-          margin: EdgeInsets.only(top: 10),
-          child: Text(texto),
-        )
-      ]
+      ),
     ),
   );
 }

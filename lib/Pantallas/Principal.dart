@@ -40,7 +40,7 @@ class _PrincipalState extends State<Principal> {
                 ),
                 BotonPrinc(
                     context,
-                    "Reserva un equipo de computo",
+                    "Agregar a cola de impresión",
                     "Imprimir",
                     Icons.print_outlined,
                     Color(0xffd5f5e3),
