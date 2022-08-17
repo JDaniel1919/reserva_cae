@@ -105,12 +105,12 @@ GestureDetector BotonPrinc(
     IconData icon,
     Color ColorBoton,
     Color ColorIcon,
-    Color ColorBorder,
-    Function Tap) {
+    Color ColorBorder) {
   return GestureDetector(
     onTap: () {
-        Tap();
-      },
+      const snackBar = SnackBar(content: Text('Tap'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    },
     // The custom button
     child: Container(
       height: MediaQuery.of(context).size.height * 0.16,

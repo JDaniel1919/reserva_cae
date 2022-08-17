@@ -34,17 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       //home: SplashSC(),
-      //home: Perfil(),
-      initialRoute: '/',
-      routes:{
-        '/':(context) => SplashSC(),
-        '/Login':(context) => Login(),
-        '/Registro':(context) => Registro(),
-        '/Principal':(context) => Principal(),
-        '/Computadoras':(context) => Computadoras(),
-        '/Cubiculos':(context) => Cubiculos(),
-        '/Perfil':(context) => Perfil()
-      }
+      home: Perfil(),
     );
   }
 }
@@ -61,7 +51,7 @@ class _SplashSCState extends State<SplashSC> {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 5,
-      navigateAfterSeconds: Login(),
+      navigateAfterSeconds: Principal(),
       image: Image.asset("assets/LogoC.png"),
       backgroundColor: Color(0xffffffff),
       gradientBackground: LinearGradient(

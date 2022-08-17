@@ -124,18 +124,14 @@ BottomAppBar AppBarInf(BuildContext context){
                     Icons.apps_outlined,
                     color: Colors.white,
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/Principal');
-                  },
+                  onPressed: () {},
                 ),
                 IconButton(
                   icon: Icon(
                     Icons.person_outline,
                     color: Colors.white,
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/Perfil');
-                  },
+                  onPressed: () {},
                 ),
               ]
             ),
