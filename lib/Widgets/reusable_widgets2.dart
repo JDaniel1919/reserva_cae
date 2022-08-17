@@ -125,6 +125,9 @@ BottomAppBar AppBarInf(BuildContext context){
                     color: Colors.white,
                   ),
                   onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/Principal');
+                  },
                 ),
                 IconButton(
                   icon: Icon(
@@ -132,6 +135,9 @@ BottomAppBar AppBarInf(BuildContext context){
                     color: Colors.white,
                   ),
                   onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/Perfil');
+                  },
                 ),
               ]
             ),

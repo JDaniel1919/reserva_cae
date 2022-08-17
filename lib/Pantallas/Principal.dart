@@ -46,6 +46,8 @@ class _PrincipalState extends State<Principal> {
                     Color(0xffd5f5e3),
                     Colors.green,
                     Colors.greenAccent),
+                    Colors.greenAccent,
+                    (){}),
                 BotonPrinc(
                     context,
                     "Reserva un equipo de computo",
@@ -54,6 +56,10 @@ class _PrincipalState extends State<Principal> {
                     Color(0xffd5f5e3),
                     Colors.green,
                     Colors.greenAccent),
+                    Colors.greenAccent,
+                    (){
+                      Navigator.pushNamed(context, '/Computadoras');
+                    }),
                 BotonPrinc(
                     context,
                     "Reserva un cubiculo de estudio",
@@ -62,6 +68,10 @@ class _PrincipalState extends State<Principal> {
                     Color(0xfffadbd8),
                     Colors.orangeAccent,
                     Colors.deepOrangeAccent),
+                     Colors.deepOrangeAccent,
+                    (){
+                      Navigator.pushNamed(context, '/Cubiculos');
+                    }),
                 SizedBox(
                   height: 5,
                 ),

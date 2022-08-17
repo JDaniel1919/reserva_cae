@@ -131,6 +131,7 @@ class _ComputadorasState extends State<Computadoras> {
               // ),
             ])),
       ),
+      bottomNavigationBar: AppBarInf(context),
       drawer: DrawerP(context),
       //bottomNavigationBar: AppBarInf(context),
     );
