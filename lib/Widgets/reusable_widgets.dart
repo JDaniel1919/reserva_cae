@@ -113,8 +113,10 @@ GestureDetector BotonPrinc(
       },
     // The custom button
     child: Container(
-      padding: const EdgeInsets.all(3.0),
-      margin: const EdgeInsets.all(10.0),
+      height: MediaQuery.of(context).size.height * 0.16,
+      width: MediaQuery.of(context).size.width * 0.85,
+      //padding: const EdgeInsets.all(3.0),
+      margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         color: ColorBoton,
         border: Border.all(color: ColorBorder, width: 2.5),
@@ -126,22 +128,22 @@ GestureDetector BotonPrinc(
             child: Icon(
               icon,
               color: Colors.white70,
-              size: 30,
+              size: MediaQuery.of(context).devicePixelRatio*12,
             ),
           ),
           margin: const EdgeInsets.all(3.0),
-          padding: const EdgeInsets.all(1.0),
+          //padding: const EdgeInsets.all(1.0),
           alignment: Alignment.centerLeft,
           decoration: ShapeDecoration(
               color: ColorIcon,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(32.0),
               )),
-          width: 85.0,
-          height: 85.0,
+          width: MediaQuery.of(context).size.width * 0.2,
+          height: MediaQuery.of(context).size.width * 0.2,
         ),
         SizedBox(
-          width: 75,
+          width: MediaQuery.of(context).size.width * 0.05,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
