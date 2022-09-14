@@ -6,8 +6,8 @@ Image logoWidget(String imageName) {
   return Image.asset(
     imageName,
     fit: BoxFit.fitWidth,
-    width: 240,
-    height: 240,
+    width: 200,
+    height: 200,
     color: Colors.white,
   );
 }
@@ -33,7 +33,7 @@ Drawer DrawerP(BuildContext context) {
     child: ListView(
       // Important: Remove any padding from the ListView.
       padding: EdgeInsets.zero,
-      children: [
+      children: <Widget>[
         DrawerHeader(
           decoration: BoxDecoration(
             color: Color(0xffbdbdbd),
@@ -124,9 +124,10 @@ BottomAppBar AppBarInf(BuildContext context){
                     Icons.apps_outlined,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
                   onPressed: () {
-                    Navigator.pushNamed(context, '/Principal');
+                    //Navigator.popAndPushNamed(context, '/Principal');
+                    Navigator.popUntil(context, ModalRoute.withName('/Principal'));
+                    //Navigator.pop(context);
                   },
                 ),
                 IconButton(
@@ -134,7 +135,6 @@ BottomAppBar AppBarInf(BuildContext context){
                     Icons.person_outline,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
                   onPressed: () {
                     Navigator.pushNamed(context, '/Perfil');
                   },

@@ -105,25 +105,22 @@ GestureDetector BotonPrinc(
     IconData icon,
     Color ColorBoton,
     Color ColorIcon,
-    Color ColorBorder) {
-     Color ColorBorder,
+    Color ColorBorder,
+    Color ColorBorder2,
     Function Tap) {
   return GestureDetector(
     onTap: () {
-      const snackBar = SnackBar(content: Text('Tap'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      Tap();
     },
-       Tap();
-      },
     // The custom button
     child: Container(
-      height: MediaQuery.of(context).size.height * 0.16,
+      height: MediaQuery.of(context).size.height * 0.12,
       width: MediaQuery.of(context).size.width * 0.85,
       //padding: const EdgeInsets.all(3.0),
       margin: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         color: ColorBoton,
-        border: Border.all(color: ColorBorder, width: 2.5),
+        border: Border.all(color: ColorBorder2, width: 2.5),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Row(children: <Widget>[
@@ -132,7 +129,7 @@ GestureDetector BotonPrinc(
             child: Icon(
               icon,
               color: Colors.white70,
-              size: MediaQuery.of(context).devicePixelRatio*12,
+              size: MediaQuery.of(context).devicePixelRatio * 12,
             ),
           ),
           margin: const EdgeInsets.all(3.0),
@@ -150,29 +147,23 @@ GestureDetector BotonPrinc(
           width: MediaQuery.of(context).size.width * 0.05,
         ),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Align(
-              alignment: Alignment(-0.35, -2),
-              child: Text(TextoPrinc),
-              widthFactor: 0,
-              heightFactor: 0,
-            ),
-            SizedBox(
-              height: 0,
-            ),
-            Align(
-              alignment: Alignment(-0.4, 0.75),
-              child: Text(
-                TextoSec,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22),
-              ),
-              widthFactor: 0,
-              heightFactor: 0,
-            ),
+            Center(
+              child: Column(children: <Widget>[
+                Text(
+                  TextoSec,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22),
+                ),
+                SizedBox(
+                  height: 0,
+                ),
+                Text(TextoPrinc),
+              ]),
+            )
           ],
         )
       ]),
@@ -260,10 +251,10 @@ Container BotonReserva(BuildContext, IconData icon, String texto) {
 
 GestureDetector EditDatos(
     BuildContext context, String Texto1, String Texto2, bool isPasswordType) {
-      int len = Texto2.length;
-      if (isPasswordType){
-        Texto2 = "*"*len;
-      }
+  int len = Texto2.length;
+  if (isPasswordType) {
+    Texto2 = "*" * len;
+  }
   return GestureDetector(
     onTap: () {
       const snackBar = SnackBar(content: Text('Tap'));
@@ -280,8 +271,14 @@ GestureDetector EditDatos(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Align(alignment: Alignment.centerLeft,child: Text(Texto1, style: TextStyle(color: Colors.black54, fontSize: 16))), 
-            Align(alignment: Alignment.centerLeft,child: Text(Texto2, style: TextStyle(color: Colors.black, fontSize: 18)))
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Text(Texto1,
+                    style: TextStyle(color: Colors.black54, fontSize: 16))),
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Text(Texto2,
+                    style: TextStyle(color: Colors.black, fontSize: 18)))
           ],
         ),
       ),

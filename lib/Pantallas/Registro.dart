@@ -19,42 +19,44 @@ class _RegistroState extends State<Registro> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: Color.fromARGB(500, 128, 0, 64)),
-        child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                  20, MediaQuery.of(context).size.height* 0.05,
-                   20, MediaQuery.of(context).size.height* 0.05),
-              child: Column(
-                children: <Widget>[
-                  logoWidget("assets/LogoB.png"),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  reusableTextField("Nombre", Icons.person_outline,false,
-                      _NombreTextController),
-                  SizedBox(
-                    height: 15,
-                  ),   
-                  reusableTextField("Correo electronico", Icons.email_outlined, false,
-                      _emailTextController),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextFieldPass(),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextFieldPass(),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  BotonLogin(context, false, () {}),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextoAdd()
-                ],
-              )
-              ),
+        child: SingleChildScrollView(
+          child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                    20, MediaQuery.of(context).size.height* 0.05,
+                     20, MediaQuery.of(context).size.height* 0.05),
+                child: Column(
+                  children: <Widget>[
+                    logoWidget("assets/LogoB.png"),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    reusableTextField("Nombre", Icons.person_outline,false,
+                        _NombreTextController),
+                    SizedBox(
+                      height: 15,
+                    ),   
+                    reusableTextField("Correo electronico", Icons.email_outlined, false,
+                        _emailTextController),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    TextFieldPass(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    TextFieldPass(),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    BotonLogin(context, false, () {}),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    TextoAdd()
+                  ],
+                )
+                ),
+        ),
       ),
     resizeToAvoidBottomInset: false
     );
@@ -70,6 +72,10 @@ class _RegistroState extends State<Registro> {
         const Text("¿Ya tienes una cuenta? ",
             style: TextStyle(color: Colors.white70)),
         GestureDetector(
+          onTap: (){
+            Navigator.popAndPushNamed(context, '/Login');
+            //Navigator.pop(context);
+          },
           child: const Text(
             "Iniciar sesión",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),

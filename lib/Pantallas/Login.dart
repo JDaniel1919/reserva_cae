@@ -18,36 +18,37 @@ class _LoginState extends State<Login> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: Color.fromARGB(500, 128, 0, 64)),
-        child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                  20, MediaQuery.of(context).size.height * 0.05,
-                   20, MediaQuery.of(context).size.height * 0.05),
-              child: Column(
-                children: <Widget>[
-                  logoWidget("assets/LogoB.png"),
-                  const SizedBox(
-                    height: 55,
-                  ),
-                  reusableTextField("Correo electronico", Icons.email_outlined, false,
-                      _emailTextController),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFieldPass(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  BotonLogin(context, true, () {}),
-                  BotonLogin(context, true, () {
-                    Navigator.pushNamed(context, '/Principal');
-                  }),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextoRegistro()
-                ],
-              )
-            ),
+        child: SingleChildScrollView(
+          child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                    20, MediaQuery.of(context).size.height * 0.05,
+                     20, MediaQuery.of(context).size.height * 0.05),
+                child: Column(
+                  children: <Widget>[
+                    logoWidget("assets/LogoB.png"),
+                    const SizedBox(
+                      height: 35,
+                    ),
+                    reusableTextField("Correo electronico", Icons.email_outlined, false,
+                        _emailTextController),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFieldPass(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    BotonLogin(context, true, () {
+                      Navigator.pushNamed(context, '/Principal');
+                    }),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    TextoRegistro()
+                  ],
+                )
+              ),
+        ),
       ),
       resizeToAvoidBottomInset: false
     );

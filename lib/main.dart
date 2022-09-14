@@ -10,7 +10,7 @@ import 'Pantallas/Principal.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
-  debugPaintSizeEnabled=true;
+  debugPaintSizeEnabled=false;
   runApp(const MyApp());
 }
 
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       //home: SplashSC(),
-        home: Perfil(),
+        //home: Perfil(),
       //home: Perfil(),
       initialRoute: '/',
       routes:{
@@ -61,8 +61,8 @@ class _SplashSCState extends State<SplashSC> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 5,
-      navigateAfterSeconds: Principal(),
+      seconds: 3,
+      //navigateAfterSeconds: Principal(),
       navigateAfterSeconds: Login(),
       image: Image.asset("assets/LogoC.png"),
       backgroundColor: Color(0xffffffff),
@@ -74,7 +74,7 @@ class _SplashSCState extends State<SplashSC> {
           Theme.of(context).primaryColor,
         ],
       ),
-      photoSize: 150,
+      photoSize: 120,
       styleTextUnderTheLoader: TextStyle(
           fontSize: 18.0, fontWeight: FontWeight.bold,
            color: Colors.white),
