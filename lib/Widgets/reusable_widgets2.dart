@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 //Widgets usados en varias pantallas
@@ -101,7 +102,9 @@ Drawer DrawerP(BuildContext context) {
             style: TextStyle(color: Colors.red, fontSize: 18),
           ),
           onTap: () {
-            Navigator.pop(context);
+            FirebaseAuth.instance.signOut();
+            Navigator.of(context).pushNamedAndRemoveUntil('/Login', (Route<dynamic> route) => false);
+            //Navigator.pop(context);
           },
         ),
       ],

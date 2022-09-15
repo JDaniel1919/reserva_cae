@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
 class TextFieldPass extends StatefulWidget {
-  const TextFieldPass({Key? key}) : super(key: key);
+  final String text;
+  final TextEditingController controller;
+  const TextFieldPass({Key? key, required this.text, required this.controller}) : super(key: key);
 
   @override
   State<TextFieldPass> createState() => _TextFieldPassState();
 }
 
 class _TextFieldPassState extends State<TextFieldPass> {
+  
   bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: widget.controller,
       obscureText: _isObscure,
       cursorColor: Colors.white,
       style: TextStyle(color: Colors.white.withOpacity(0.9)),
@@ -28,7 +32,7 @@ class _TextFieldPassState extends State<TextFieldPass> {
             });
           },
         ),
-        labelText: "Contraseña",
+        labelText: widget.text,
         labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
         filled: true,
         floatingLabelBehavior: FloatingLabelBehavior.never,
