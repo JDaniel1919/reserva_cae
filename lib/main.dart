@@ -1,4 +1,6 @@
 // ignore: depend_on_referenced_packages
+import 'package:firebase_core/firebase_core.dart';
+import 'package:reserva_cae/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Pantallas/Computadoras.dart';
 import 'package:reserva_cae/Pantallas/Cubiculos.dart';
@@ -9,7 +11,11 @@ import 'Pantallas/Login.dart';
 import 'Pantallas/Principal.dart';
 import 'package:flutter/rendering.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   debugPaintSizeEnabled=false;
   runApp(const MyApp());
 }

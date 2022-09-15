@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "547591929381",
+    "project_id": "reserva-cae",
+    "storage_bucket": "reserva-cae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547591929381:android:bbcf0056f43e109b9489cc",
+        "android_client_info": {
+          "package_name": "com.example.reserva_cae"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547591929381-hhs6pfjrmba57vsrkg4p0o46icesii9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKse8jUdMPU2rh68D_In_ILd7-hKz-5tU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547591929381-hhs6pfjrmba57vsrkg4p0o46icesii9p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
