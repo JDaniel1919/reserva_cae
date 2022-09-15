@@ -35,7 +35,7 @@ class _RegistroState extends State<Registro> {
                     const SizedBox(
                       height: 5,
                     ),
-                    reusableTextField("Nombre", Icons.person_outline, false,
+                    reusableTextField("Nombre completo", Icons.person_outline, false,
                         _NombreTextController),
                     SizedBox(
                       height: 15,
