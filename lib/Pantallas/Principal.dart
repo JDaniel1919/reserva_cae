@@ -157,13 +157,17 @@ class _PrincipalState extends State<Principal> {
                         ),
                         QrImage(
                           data: '''
-                          {
-                          'nombre': 'Braumi',
-                          'paterno': 'Abrajan',
-                          'materno': 'Hinojosa',
-                          'matricula': '2019350001',
-                          'servicio': 'Computadora'
-                          }
+{
+  "principal": {
+    "computadora": {
+      "equipo": "C7",
+      "estado": "1",
+      "nombre": "Braulio Abrajan",
+      "matricula": "20190835",
+      "fecha": "13/09/2022"
+    }
+  }
+} 
                           ''',
                           size: 250,
                         ),
@@ -175,7 +179,7 @@ class _PrincipalState extends State<Principal> {
                         SizedBox(
                           height: 25,
                         ),
-                        Text("Tiempo restante: ",
+                        Text("Tiempo restante: : 00:00",
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.normal)),
                       ],

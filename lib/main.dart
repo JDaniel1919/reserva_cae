@@ -1,4 +1,5 @@
 // ignore: depend_on_referenced_packages
+import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:reserva_cae/firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,24 @@ import 'package:splashscreen/splashscreen.dart';
 import 'Pantallas/Login.dart';
 import 'Pantallas/Principal.dart';
 import 'package:flutter/rendering.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 void main() async {
+  //FirebaseDatabase database = FirebaseDatabase.instance;
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
+  final db = FirebaseDatabase.instance.ref();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  log('checking db connection!');
+  final snapshot = await db.child('Usuarios/US01').get();
+    String temp = snapshot.value.toString();
+    print(temp + "Hola");
+    //print(snapshot.value);
+
+
   debugPaintSizeEnabled=false;
   runApp(const MyApp());
 }
