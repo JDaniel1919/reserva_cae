@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets2.dart';
@@ -11,10 +12,46 @@ class Computadoras extends StatefulWidget {
   State<Computadoras> createState() => _ComputadorasState();
 }
 
+// Color setColor(int Estado) {
+//   //red is just a sample color
+//   Color color;
+//   if (Estado == 0) {
+//     color = Colors.green;
+//   } else if (Estado == 1) {
+//     color = Colors.red;
+//   } else if (Estado == 2) {
+//     color = Colors.orange;
+//   } else {
+//     color = Colors.white;
+//   }
+//   return color;
+// }
+
+// PC1.onValue.listen((DatabaseEvent event) {
+//     final data = event.snapshot.value;
+// });
+
+// PC1.onChildChanged().listen((DatabaseEvent event){
+//   // String temp = event.snapshot.value.toString();
+//   // print(temp);
+// });
+var PC1 = FirebaseDatabase.instance.ref();
+
 class _ComputadorasState extends State<Computadoras> {
   CarouselController buttonCarouselController = CarouselController();
   int activeIndex = 0;
+
   @override
+  void initState() {
+    super.initState();
+    PC1.child('Computadoras/PC01/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      String value = snapshot.value.toString();
+      print('Value is $value');
+      int val_pc01 = int.parse(value);
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -83,9 +120,30 @@ class _ComputadorasState extends State<Computadoras> {
                 SizedBox(
                   height: 15,
                 ),
-                CarouselSlider.builder(
-                  itemCount: 2,
-                  carouselController: buttonCarouselController,
+                CarouselSlider(
+                  items: [
+                    Expanded(
+                      child: GridView.count(
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        crossAxisCount: 4,
+                        children: <Widget>[
+                          GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(
+                                  context, Icons.computer, "C", getColor(1))),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: GridView.count(
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        crossAxisCount: 4,
+                        children: <Widget>[],
+                      ),
+                    ),
+                  ],
                   options: CarouselOptions(
                     height: 300,
                     viewportFraction: 1,
@@ -96,27 +154,9 @@ class _ComputadorasState extends State<Computadoras> {
                     onPageChanged: (index, reason) =>
                         setState(() => activeIndex = index),
                   ),
-                  itemBuilder:
-                      (BuildContext context, int itemIndex, int pageViewIndex) =>
-                          Expanded(
-                    child: GridView.count(
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      crossAxisCount: 4,
-                      children: <Widget>[
-                        for (var i = 1; i <= 12; i++)
-                          GestureDetector(
-                            onTap: () {
-                            },
-                            child: BotonReserva(
-                                context, Icons.computer, "C" + i.toString()),
-                          ),
-                      ],
-                    ),
-                  ),
                 ),
                 buildindicator(),
-        
+
                 // Expanded(
                 //   child: GridView.count(
                 //     crossAxisSpacing: 10,
@@ -148,4 +188,18 @@ class _ComputadorasState extends State<Computadoras> {
           dotHeight: 10,
         ),
       );
+
+  Color getColor(int Estado) {
+    Color color;
+    if (Estado == 0) {
+      color = Colors.green;
+    } else if (Estado == 1) {
+      color = Colors.red;
+    } else if (Estado == 2) {
+      color = Colors.orange;
+    } else {
+      color = Colors.white;
+    }
+    return color;
+  }
 }

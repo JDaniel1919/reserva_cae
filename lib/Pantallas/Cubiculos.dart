@@ -73,11 +73,12 @@ class _CubiculosState extends State<Cubiculos> {
                     mainAxisSpacing: 10,
                     crossAxisCount: 4,
                     children: <Widget>[
-                      for (var i = 1; i <= 12; i++)
+                      for (var i = 1; i <= 5; i++)
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {         
+                          },
                           child: BotonReserva(
-                              context, Icons.book_outlined, "C" + i.toString()),
+                              context, Icons.book_outlined, "C" + i.toString(), Colors.amber),
                         ),
                     ],
                   ),

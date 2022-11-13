@@ -57,6 +57,9 @@ Drawer DrawerP(BuildContext context) {
           title: const Text('Reservaciones activas'),
           onTap: () {
             Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('Proximamente...'),
+            ));
           },
         ),
         ListTile(
@@ -64,6 +67,9 @@ Drawer DrawerP(BuildContext context) {
           title: const Text('Historial'),
           onTap: () {
             Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('Proximamente...'),
+            ));
           },
         ),
         Divider(
@@ -76,6 +82,9 @@ Drawer DrawerP(BuildContext context) {
           title: const Text('Configuracion'),
           onTap: () {
             Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('Proximamente...'),
+            ));
           },
         ),
         ListTile(
@@ -83,6 +92,9 @@ Drawer DrawerP(BuildContext context) {
           title: const Text('Ayuda'),
           onTap: () {
             Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('Proximamente...'),
+            ));
           },
         ),
         ListTile(
@@ -90,6 +102,9 @@ Drawer DrawerP(BuildContext context) {
           title: const Text('Acerca de nosotros'),
           onTap: () {
             Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('Proximamente...'),
+            ));
           },
         ),
         ListTile(
@@ -103,7 +118,8 @@ Drawer DrawerP(BuildContext context) {
           ),
           onTap: () {
             FirebaseAuth.instance.signOut();
-            Navigator.of(context).pushNamedAndRemoveUntil('/Login', (Route<dynamic> route) => false);
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/Login', (Route<dynamic> route) => false);
             //Navigator.pop(context);
           },
         ),
@@ -112,39 +128,37 @@ Drawer DrawerP(BuildContext context) {
   );
 }
 
-BottomAppBar AppBarInf(BuildContext context){
+BottomAppBar AppBarInf(BuildContext context) {
   return BottomAppBar(
-        color: Color(0xffb43f6b),
-        shape: const CircularNotchedRectangle(),
-        child: Container(
-          height: 60.0,
-          child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.apps_outlined,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    //Navigator.popAndPushNamed(context, '/Principal');
-                    Navigator.popUntil(context, ModalRoute.withName('/Principal'));
-                    //Navigator.pop(context);
-                  },
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.person_outline,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/Perfil');
-                  },
-                ),
-              ]
+    color: Color(0xffb43f6b),
+    shape: const CircularNotchedRectangle(),
+    child: Container(
+      height: 60.0,
+      child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.apps_outlined,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                //Navigator.popAndPushNamed(context, '/Principal');
+                Navigator.popUntil(context, ModalRoute.withName('/Principal'));
+                //Navigator.pop(context);
+              },
             ),
-        ),
+            IconButton(
+              icon: Icon(
+                Icons.person_outline,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/Perfil');
+              },
+            ),
+          ]),
+    ),
   );
 }
-

@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:reserva_cae/firebase_options.dart';
 import '/Widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets2.dart';
@@ -14,6 +16,7 @@ class _RegistroState extends State<Registro> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _NombreTextController = TextEditingController();
+  TextEditingController _BoletaTextController = TextEditingController();
   TextEditingController _myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -35,8 +38,8 @@ class _RegistroState extends State<Registro> {
                     const SizedBox(
                       height: 5,
                     ),
-                    reusableTextField("Nombre completo", Icons.person_outline, false,
-                        _NombreTextController),
+                    reusableTextField("Nombre completo", Icons.person_outline,
+                        false, _NombreTextController),
                     SizedBox(
                       height: 15,
                     ),
@@ -45,13 +48,18 @@ class _RegistroState extends State<Registro> {
                     SizedBox(
                       height: 15,
                     ),
+                    reusableTextField("Boleta", Icons.onetwothree_outlined,
+                        false, _BoletaTextController),
+                    SizedBox(
+                      height: 15,
+                    ),
                     TextFieldPass(
                         text: "Contraseña", controller: _myController),
                     SizedBox(
                       height: 15,
                     ),
-                    TextFieldPass(
-                        text: "Ingresa nuevamente la contraseña", controller: _passwordTextController),
+                    // TextFieldPass(
+                    //     text: "Ingresa nuevamente la contraseña", controller: _passwordTextController),
                     SizedBox(
                       height: 25,
                     ),
@@ -63,6 +71,20 @@ class _RegistroState extends State<Registro> {
                           password: _myController.text,
                         )
                             .then((value) {
+                          // Get a reference to the database service
+                          final db = FirebaseDatabase.instance.ref('Usuarios');
+                          final user = FirebaseAuth.instance.currentUser;
+                          final uid = user?.uid;
+                          var email = _emailTextController.text;
+                          var boleta = _BoletaTextController.text;
+                          var nombre = _NombreTextController.text;
+                          var yourdata = {
+                            "Boleta": int.parse(boleta),
+                            "Nombre": nombre,
+                            "Correo": email
+                          };
+                          db.child(uid!).set(yourdata);
+
                           Navigator.pushNamed(context, '/Principal');
                         });
                       } on FirebaseAuthException catch (e) {

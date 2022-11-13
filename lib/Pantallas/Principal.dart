@@ -53,7 +53,11 @@ class _PrincipalState extends State<Principal> {
                       Colors.green,
                       Colors.greenAccent,
                       Colors.greenAccent,
-                      () {}),
+                      () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('Proximamente...'),
+            ));
+                      }),
                   BotonPrinc(
                       context,
                       "Reserva un equipo de computo",

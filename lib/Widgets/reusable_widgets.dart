@@ -237,12 +237,16 @@ Container Disponibilidad(
   );
 }
 
-Container BotonReserva(BuildContext, IconData icon, String texto) {
+Container BotonReserva(BuildContext, IconData icon, String texto, Color ColorDisp) {
   return Container(
     color: Color(0xffe0e0e0),
     child: Column(children: <Widget>[
       Container(
         margin: EdgeInsets.only(top: 10),
+        decoration: BoxDecoration(
+          color: ColorDisp,
+          shape: BoxShape.circle,
+        ),
         child: Center(child: Icon(icon, size: 30)),
       ),
       Container(

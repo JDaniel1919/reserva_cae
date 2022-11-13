@@ -23,11 +23,10 @@ void main() async {
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
   log('checking db connection!');
-  final snapshot = await db.child('Usuarios/US01').get();
+  final snapshot = await db.child('Usuarios/usr01').get();
     String temp = snapshot.value.toString();
     print(temp + "Hola");
     //print(snapshot.value);
-
 
   debugPaintSizeEnabled=false;
   runApp(const MyApp());
