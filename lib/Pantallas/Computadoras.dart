@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets.dart';
@@ -35,20 +37,131 @@ class Computadoras extends StatefulWidget {
 //   // String temp = event.snapshot.value.toString();
 //   // print(temp);
 // });
-var PC1 = FirebaseDatabase.instance.ref();
 
 class _ComputadorasState extends State<Computadoras> {
   CarouselController buttonCarouselController = CarouselController();
   int activeIndex = 0;
+  late Timer timer;
+
+  var st_pc01 = 3;
+  var st_pc02 = 3;
+  var st_pc03 = 3;
+  var st_pc04 = 3;
+  var st_pc05 = 3;
+  var st_pc06 = 3;
+  var st_pc07 = 3;
+  var st_pc08 = 3;
+  var st_pc09 = 3;
+  var st_pc10 = 3;
+  var st_pc11 = 3;
+  var st_pc12 = 3;
+  var st_pc13 = 3;
+  var st_pc14 = 3;
+  var st_pc15 = 3;
 
   @override
-  void initState() {
+  final PC1 = FirebaseDatabase.instance.ref();
+  final PC2 = FirebaseDatabase.instance.ref();
+  final PC3 = FirebaseDatabase.instance.ref();
+  final PC4 = FirebaseDatabase.instance.ref();
+  final PC5 = FirebaseDatabase.instance.ref();
+  final PC6 = FirebaseDatabase.instance.ref();
+  final PC7 = FirebaseDatabase.instance.ref();
+  final PC8 = FirebaseDatabase.instance.ref();
+  final PC9 = FirebaseDatabase.instance.ref();
+  final PC10 = FirebaseDatabase.instance.ref();
+  final PC11 = FirebaseDatabase.instance.ref();
+  final PC12 = FirebaseDatabase.instance.ref();
+  final PC13 = FirebaseDatabase.instance.ref();
+  final PC14 = FirebaseDatabase.instance.ref();
+  final PC15 = FirebaseDatabase.instance.ref();
+
+  initState() {
+    timer = Timer.periodic(Duration(seconds: 1), (t) {
+      setState(() {});
+    });
     super.initState();
+
     PC1.child('Computadoras/PC01/Estado').onValue.listen((event) {
       var snapshot = event.snapshot;
-      String value = snapshot.value.toString();
-      print('Value is $value');
-      int val_pc01 = int.parse(value);
+      // String value = snapshot.value.toString();
+      // st_pc01 = int.parse(value);
+      st_pc01 = int.parse(snapshot.value.toString());
+    });
+    PC2.child('Computadoras/PC02/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc02 = int.parse(snapshot.value.toString());
+    });
+    PC3.child('Computadoras/PC03/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc03 = int.parse(snapshot.value.toString());
+    });
+    PC4.child('Computadoras/PC04/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc04 = int.parse(snapshot.value.toString());
+    });
+    PC5.child('Computadoras/PC05/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc05 = int.parse(snapshot.value.toString());
+    });
+    PC6.child('Computadoras/PC06/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc06 = int.parse(snapshot.value.toString());
+    });
+    PC7.child('Computadoras/PC07/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc07 = int.parse(snapshot.value.toString());
+    });
+    PC8.child('Computadoras/PC08/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc08 = int.parse(snapshot.value.toString());
+    });
+    PC9.child('Computadoras/PC09/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc09 = int.parse(snapshot.value.toString());
+    });
+    PC10.child('Computadoras/PC10/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc10 = int.parse(snapshot.value.toString());
+    });
+    PC11.child('Computadoras/PC11/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc11 = int.parse(snapshot.value.toString());
+    });
+    PC12.child('Computadoras/PC12/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc12 = int.parse(snapshot.value.toString());
+    });
+    PC13.child('Computadoras/PC13/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc13 = int.parse(snapshot.value.toString());
+    });
+    PC14.child('Computadoras/PC14/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      st_pc14 = int.parse(snapshot.value.toString());
+    });
+    PC15.child('Computadoras/PC15/Estado').onValue.listen((event) {
+      var snapshot = event.snapshot;
+      // String value = snapshot.value.toString();
+      // st_pc01 = int.parse(value);
+      st_pc15 = int.parse(snapshot.value.toString());
+    });
+  }
+
+  void dispose() {
+    super.dispose();
+    timer.cancel();
+  }
+
+  // void resfresh(Expanded widget_ref){
+  //   setState(() {
+  //     build(context);
+  //   });
+  // }
+
+  void resfresh() {
+    setState(() {
+      build(context);
     });
   }
 
@@ -130,8 +243,48 @@ class _ComputadorasState extends State<Computadoras> {
                         children: <Widget>[
                           GestureDetector(
                               onTap: () {},
-                              child: BotonReserva(
-                                  context, Icons.computer, "C", getColor(1))),
+                              child: BotonReserva(context, Icons.computer, "C1",
+                                  getColor(st_pc01))),
+                          GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer, "C2",
+                                  getColor(st_pc02))),
+                          GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer, "C3",
+                                  getColor(st_pc03))),
+                          GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer, "C4",
+                                  getColor(st_pc04))),
+                          GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer, "C5",
+                                  getColor(st_pc05))),
+                          GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer, "C6",
+                                  getColor(st_pc06))),
+                          GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer, "C7",
+                                  getColor(st_pc07))),
+                          GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer, "C8",
+                                  getColor(st_pc08))),
+                          GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer, "C9",
+                                  getColor(st_pc09))),
+                          GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer,
+                                  "C10", getColor(st_pc10))),
+                                                            GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer,
+                                  "C11", getColor(st_pc11)))
                         ],
                       ),
                     ),
@@ -140,7 +293,24 @@ class _ComputadorasState extends State<Computadoras> {
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
                         crossAxisCount: 4,
-                        children: <Widget>[],
+                        children: <Widget>[
+                                                    GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer,
+                                  "C12", getColor(st_pc12))),
+                                                            GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer,
+                                  "C13", getColor(st_pc13))),
+                                                            GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer,
+                                  "C14", getColor(st_pc14))),
+                                                            GestureDetector(
+                              onTap: () {},
+                              child: BotonReserva(context, Icons.computer,
+                                  "C15", getColor(st_pc15))),
+                        ],
                       ),
                     ),
                   ],

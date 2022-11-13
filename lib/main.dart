@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      showPerformanceOverlay: false,
+      showPerformanceOverlay: true,
       title: 'Reservaciones',
       theme: ThemeData(
         primaryColor: Color(0xff800040),
