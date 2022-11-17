@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:reserva_cae/DatosQR.dart';
 import '/Widgets/reusable_widgets.dart';
 import '/Widgets/reusable_widgets2.dart';
 
@@ -15,7 +17,23 @@ class Principal extends StatefulWidget {
 class _PrincipalState extends State<Principal> {
   FirebaseDatabase database = FirebaseDatabase.instance;
   DatabaseReference ref = FirebaseDatabase.instance.ref();
+  
+  //String srv = GenQR.srv;
+  //GenQR genqr = new GenQR("srv", 0, 3, "nombre", "boleta", "fecha");
+  // GenQR genqr = new GenQR();
+  // genqr.RTDB();
+ 
   @override
+  late Timer timer;
+  initState() {
+    timer = Timer.periodic(Duration(seconds: 3), (t) {
+      setState(() {
+      });
+    });
+    super.initState();
+  }
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -126,6 +144,8 @@ class _PrincipalState extends State<Principal> {
       floatingActionButton: FloatingActionButton(
         tooltip: 'Mostrar codigo QR',
         onPressed: () {
+          RTDB_name();
+          RTDB_boleta();
           showModalBottomSheet(
               isScrollControlled: true,
               context: context,
@@ -160,19 +180,9 @@ class _PrincipalState extends State<Principal> {
                           height: 20,
                         ),
                         QrImage(
-                          data: '''
-{
-  "principal": {
-    "computadora": {
-      "equipo": "C7",
-      "estado": "1",
-      "nombre": "Braulio Abrajan",
-      "matricula": "20190835",
-      "fecha": "13/09/2022"
-    }
-  }
-} 
-                          ''',
+                          //data: "" + nombre,
+                          data: srv + "|" + num_srv.toString() +"|"
+                          + nombre + "|" + boleta +"|" + fecha +"||",
                           size: 250,
                         ),
                         // Container(
@@ -202,4 +212,7 @@ class _PrincipalState extends State<Principal> {
       drawer: DrawerP(context),
     );
   }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class TextFieldPass extends StatefulWidget {
   final String text;
   final TextEditingController controller;
-  const TextFieldPass({Key? key, required this.text, required this.controller}) : super(key: key);
+  const TextFieldPass({Key? key, required this.text, required this.controller})
+      : super(key: key);
 
   @override
   State<TextFieldPass> createState() => _TextFieldPassState();
 }
 
 class _TextFieldPassState extends State<TextFieldPass> {
-  
   bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
@@ -237,12 +237,13 @@ Container Disponibilidad(
   );
 }
 
-Container BotonReserva(BuildContext, IconData icon, String texto, Color ColorDisp) {
+Container BotonReserva(
+    BuildContext, IconData icon, String texto, Color ColorDisp) {
   return Container(
     color: Color(0xffe0e0e0),
     child: Column(children: <Widget>[
       Container(
-        margin: EdgeInsets.only(top: 10),
+        margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: ColorDisp,
           shape: BoxShape.circle,
@@ -291,5 +292,46 @@ GestureDetector EditDatos(
         ),
       ),
     ),
+  );
+}
+
+AlertDialog Msg_Reserv(BuildContext, String text, Function popc, Function popok) {
+  return AlertDialog(
+    title: const Text('Confirma tu reservación'),
+    content:
+        Text(text),
+    actions: <Widget>[
+      TextButton(
+        onPressed: () {
+          popc();
+        },
+        child: const Text('Cancelar'),
+      ),
+      TextButton(
+        onPressed: () {
+          popok();
+        },
+        child: const Text('OK'),
+      ),
+    ],
+    actionsAlignment: MainAxisAlignment.spaceEvenly,
+  );
+}
+
+
+AlertDialog MsgConfirmacion(BuildContext, Function popok) {
+  return AlertDialog(
+    title: const Text('Reservación exitosa'),
+    content:
+        Text("Recuerda que tienes 5 minutos para validar tu reservación escaneando tu código QR"),
+    actions: <Widget>[
+      TextButton(
+        onPressed: () {
+          popok();
+        },
+        child: const Text('OK'),
+      ),
+    ],
+    actionsAlignment: MainAxisAlignment.center,
   );
 }

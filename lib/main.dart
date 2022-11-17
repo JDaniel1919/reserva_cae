@@ -14,6 +14,7 @@ import 'package:flutter/rendering.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 void main() async {
+  //String nombre;
   //FirebaseDatabase database = FirebaseDatabase.instance;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      showPerformanceOverlay: true,
+      showPerformanceOverlay: false,
       title: 'Reservaciones',
       theme: ThemeData(
         primaryColor: Color(0xff800040),
