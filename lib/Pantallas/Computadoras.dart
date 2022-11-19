@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:reserva_cae/DatosQR.dart';
 import 'package:reserva_cae/Widgets/Time.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets.dart';
@@ -66,6 +68,7 @@ class _ComputadorasState extends State<Computadoras> {
       setState(() {});
     });
     super.initState();
+    controller = CountdownTimerController(endTime: endTime, onEnd: onEnd);
 
     PC1.child('Computadoras/PC01/Estado').onValue.listen((event) {
       var snapshot = event.snapshot;
@@ -243,6 +246,11 @@ class _ComputadorasState extends State<Computadoras> {
                                           isReserved = true;
                                           isTimerActive = true;
                                           Update_pc("PC01", 2);
+                                          CountdownTimer(
+                                            controller: controller,
+                                            onEnd: onEnd,
+                                            endTime: endTime,
+                                          );
                                           showDialog<String>(
                                               context: context,
                                               builder: (BuildContext context) =>

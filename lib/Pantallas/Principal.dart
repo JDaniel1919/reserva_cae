@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:reserva_cae/DatosQR.dart';
 import 'package:reserva_cae/Widgets/Time.dart';
@@ -30,39 +32,17 @@ class _PrincipalState extends State<Principal> {
   Duration duration = Duration();
   Timer? timer;
 
-  //to check if sheet is open
-  bool isSheetOpen = false;
-  //to access setState of sheet
-  late Function sheetSetState;
-
-  void startTimer() {
-    //Not related to the answer but you should consider resetting the timer when it starts
-    timer?.cancel();
-    duration = duration = Duration();
-    print("timer start");
-    timer = Timer.periodic(Duration(seconds: 1), (_) => addTime());
-  }
-
-  void addTime() {
-    final addSeconds = 1;
-    //if sheet is open call setState if not don't
-    if (isSheetOpen) {
-      sheetSetState(() {
-        final seconds = duration.inSeconds + addSeconds;
-        duration = Duration(seconds: seconds);
-      });
-    } else {
-      final seconds = duration.inSeconds + addSeconds;
-      duration = Duration(seconds: seconds);
-    }
-  }
-
-  initState() {
-    timer2 = Timer.periodic(Duration(seconds: 1), (t) {
-      setState(() {});
-    });
-    super.initState();
-  }
+// void initState() {
+//   super.initState();
+//   controller = CountdownTimerController(endTime: endTime, onEnd: onEnd);
+// }
+  //Cambio qr
+  // initState() {
+  //   timer2 = Timer.periodic(Duration(seconds: 1), (t) {
+  //     setState(() {});
+  //   });
+  //   super.initState();
+  // }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,8 +153,6 @@ class _PrincipalState extends State<Principal> {
       floatingActionButton: FloatingActionButton(
         tooltip: 'Mostrar codigo QR',
         onPressed: () {
-          isSheetOpen = true;
-          startTimer();
           RTDB_name();
           RTDB_boleta();
           showModalBottomSheet(
@@ -236,7 +214,7 @@ class _PrincipalState extends State<Principal> {
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.normal)),
                         //CountDownTimer(isTimerActive),
-
+                        getTimer(),
                       ],
                     ),
                   ),

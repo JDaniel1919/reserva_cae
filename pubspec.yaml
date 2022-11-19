@@ -33,6 +33,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   qr_flutter: ^4.0.0
   flutter_svg: ^0.18.0
+  flutter_countdown_timer: ^4.1.0
   
   flutter:
     sdk: flutter

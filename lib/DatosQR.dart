@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:intl/intl.dart';
 import 'package:reserva_cae/main.dart';
-
 
 final now = new DateTime.now();
 String formatterFF = DateFormat('yMd').format(now);
@@ -16,6 +18,30 @@ int estado = 3;
 String nombre = "";
 String boleta = "";
 String fecha = formatterFF;
+
+//Timer
+late CountdownTimerController controller;
+int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 50;
+
+Widget getTimer() {
+  if (isTimerActive) {
+    return Container(
+      width: 60.0,
+      padding: EdgeInsets.only(top: 3.0, right: 4.0),
+      child: CountdownTimer(
+        controller: controller,
+        endTime: endTime,
+      ),
+    );
+  } else {
+    return Container();
+  }
+}
+
+void onEnd() {
+  Update_pc("PC01", 0);
+  isTimerActive = false;
+}
 
 //nombre = "";
 //import my_prj.globals;
@@ -78,14 +104,10 @@ void RTDB_boleta() async {
 
 void Update_pc(String id, int estado) async {
   final db = FirebaseDatabase.instance.ref('Computadoras/$id');
-  await db.update({
-    "Estado": estado
-  });
+  await db.update({"Estado": estado});
 }
 
 void Update_cub(String id, int estado) async {
   final db = FirebaseDatabase.instance.ref('Cubiculos/$id');
-  await db.update({
-    "Estado": estado
-  });
+  await db.update({"Estado": estado});
 }
