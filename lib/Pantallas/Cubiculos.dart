@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/reusable_widgets.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets2.dart';
+import 'package:reserva_cae/DatosQR.dart';
 
 class Cubiculos extends StatefulWidget {
   Cubiculos({Key? key}) : super(key: key);
@@ -144,42 +145,210 @@ class _CubiculosState extends State<Cubiculos> {
                       crossAxisCount: 4,
                       children: <Widget>[
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => Msg_Reserv(
+                                        BuildContext,
+                                        "¿Quieres reservar el Cubiculo 1?", () {
+                                      Navigator.pop(context, 'Cancelar');
+                                    }, () {
+                                      Navigator.pop(context, 'OK');
+                                      srv = "Cubiculo";
+                                      num_srv = 1;
+                                      estado = 2;
+                                      isReserved = true;
+                                      Update_cub("CB01", 2);
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              MsgConfirmacion(BuildContext, () {
+                                                Navigator.pop(context, 'OK');
+                                              }));
+                                    }));
+                          },
                           child: BotonReserva(context, Icons.book_outlined,
                               "CB1", getColor(st_cb01)),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => Msg_Reserv(
+                                        BuildContext,
+                                        "¿Quieres reservar el Cubiculo 2?", () {
+                                      Navigator.pop(context, 'Cancelar');
+                                    }, () {
+                                      Navigator.pop(context, 'OK');
+                                      srv = "Cubiculo";
+                                      num_srv = 2;
+                                      estado = 2;
+                                      isReserved = true;
+                                      Update_cub("CB02", 2);
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              MsgConfirmacion(BuildContext, () {
+                                                Navigator.pop(context, 'OK');
+                                              }));
+                                    }));
+                          },
                           child: BotonReserva(context, Icons.book_outlined,
                               "CB2", getColor(st_cb02)),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => Msg_Reserv(
+                                        BuildContext,
+                                        "¿Quieres reservar el Cubiculo 3?", () {
+                                      Navigator.pop(context, 'Cancelar');
+                                    }, () {
+                                      Navigator.pop(context, 'OK');
+                                      srv = "Cubiculo";
+                                      num_srv = 3;
+                                      estado = 2;
+                                      isReserved = true;
+                                      Update_cub("CB03", 2);
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              MsgConfirmacion(BuildContext, () {
+                                                Navigator.pop(context, 'OK');
+                                              }));
+                                    }));
+                          },
                           child: BotonReserva(context, Icons.book_outlined,
                               "CB3", getColor(st_cb03)),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => Msg_Reserv(
+                                        BuildContext,
+                                        "¿Quieres reservar el Cubiculo 4?", () {
+                                      Navigator.pop(context, 'Cancelar');
+                                    }, () {
+                                      Navigator.pop(context, 'OK');
+                                      srv = "Cubiculo";
+                                      num_srv = 4;
+                                      estado = 2;
+                                      isReserved = true;
+                                      Update_cub("CB04", 2);
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              MsgConfirmacion(BuildContext, () {
+                                                Navigator.pop(context, 'OK');
+                                              }));
+                                    }));
+                          },
                           child: BotonReserva(context, Icons.book_outlined,
                               "CB4", getColor(st_cb04)),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => Msg_Reserv(
+                                        BuildContext,
+                                        "¿Quieres reservar el Cubiculo 5?", () {
+                                      Navigator.pop(context, 'Cancelar');
+                                    }, () {
+                                      Navigator.pop(context, 'OK');
+                                      srv = "Cubiculo";
+                                      num_srv = 5;
+                                      estado = 2;
+                                      isReserved = true;
+                                      Update_cub("CB05", 2);
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              MsgConfirmacion(BuildContext, () {
+                                                Navigator.pop(context, 'OK');
+                                              }));
+                                    }));
+                          },
                           child: BotonReserva(context, Icons.book_outlined,
                               "CB5", getColor(st_cb05)),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => Msg_Reserv(
+                                        BuildContext,
+                                        "¿Quieres reservar el Cubiculo 6?", () {
+                                      Navigator.pop(context, 'Cancelar');
+                                    }, () {
+                                      Navigator.pop(context, 'OK');
+                                      srv = "Cubiculo";
+                                      num_srv = 6;
+                                      estado = 2;
+                                      isReserved = true;
+                                      Update_cub("CB06", 2);
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              MsgConfirmacion(BuildContext, () {
+                                                Navigator.pop(context, 'OK');
+                                              }));
+                                    }));
+                          },
                           child: BotonReserva(context, Icons.book_outlined,
                               "CB6", getColor(st_cb06)),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => Msg_Reserv(
+                                        BuildContext,
+                                        "¿Quieres reservar el Cubiculo 7?", () {
+                                      Navigator.pop(context, 'Cancelar');
+                                    }, () {
+                                      Navigator.pop(context, 'OK');
+                                      srv = "Cubiculo";
+                                      num_srv = 7;
+                                      estado = 2;
+                                      isReserved = true;
+                                      Update_cub("CB07", 2);
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              MsgConfirmacion(BuildContext, () {
+                                                Navigator.pop(context, 'OK');
+                                              }));
+                                    }));
+                          },
                           child: BotonReserva(context, Icons.book_outlined,
                               "CB7", getColor(st_cb07)),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => Msg_Reserv(
+                                        BuildContext,
+                                        "¿Quieres reservar el Cubiculo 8?", () {
+                                      Navigator.pop(context, 'Cancelar');
+                                    }, () {
+                                      Navigator.pop(context, 'OK');
+                                      srv = "Cubiculo";
+                                      num_srv = 8;
+                                      estado = 2;
+                                      isReserved = true;
+                                      Update_cub("CB08", 2);
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              MsgConfirmacion(BuildContext, () {
+                                                Navigator.pop(context, 'OK');
+                                              }));
+                                    }));
+                          },
                           child: BotonReserva(context, Icons.book_outlined,
                               "CB8", getColor(st_cb08)),
                         ),

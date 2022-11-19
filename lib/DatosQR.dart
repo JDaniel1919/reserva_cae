@@ -9,6 +9,7 @@ String formatterFF = DateFormat('yMd').format(now);
 //String formateerHH = DateFormat.Hm().format(now);
 //String nombre = "PRUEBA";
 bool isReserved = false;
+bool isTimerActive = false;
 String srv = "";
 int num_srv = 0;
 int estado = 3;
@@ -77,6 +78,13 @@ void RTDB_boleta() async {
 
 void Update_pc(String id, int estado) async {
   final db = FirebaseDatabase.instance.ref('Computadoras/$id');
+  await db.update({
+    "Estado": estado
+  });
+}
+
+void Update_cub(String id, int estado) async {
+  final db = FirebaseDatabase.instance.ref('Cubiculos/$id');
   await db.update({
     "Estado": estado
   });

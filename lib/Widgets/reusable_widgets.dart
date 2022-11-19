@@ -45,6 +45,7 @@ class _TextFieldPassState extends State<TextFieldPass> {
   }
 }
 
+
 TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     TextEditingController controller) {
   return TextField(

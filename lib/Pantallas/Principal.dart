@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:reserva_cae/DatosQR.dart';
+import 'package:reserva_cae/Widgets/Time.dart';
 import '/Widgets/reusable_widgets.dart';
 import '/Widgets/reusable_widgets2.dart';
 
@@ -17,22 +18,51 @@ class Principal extends StatefulWidget {
 class _PrincipalState extends State<Principal> {
   FirebaseDatabase database = FirebaseDatabase.instance;
   DatabaseReference ref = FirebaseDatabase.instance.ref();
-  
+
   //String srv = GenQR.srv;
   //GenQR genqr = new GenQR("srv", 0, 3, "nombre", "boleta", "fecha");
   // GenQR genqr = new GenQR();
   // genqr.RTDB();
- 
+
   @override
-  late Timer timer;
-  initState() {
-    timer = Timer.periodic(Duration(seconds: 3), (t) {
-      setState(() {
+  late Timer timer2;
+// Bottom sheet timer
+  Duration duration = Duration();
+  Timer? timer;
+
+  //to check if sheet is open
+  bool isSheetOpen = false;
+  //to access setState of sheet
+  late Function sheetSetState;
+
+  void startTimer() {
+    //Not related to the answer but you should consider resetting the timer when it starts
+    timer?.cancel();
+    duration = duration = Duration();
+    print("timer start");
+    timer = Timer.periodic(Duration(seconds: 1), (_) => addTime());
+  }
+
+  void addTime() {
+    final addSeconds = 1;
+    //if sheet is open call setState if not don't
+    if (isSheetOpen) {
+      sheetSetState(() {
+        final seconds = duration.inSeconds + addSeconds;
+        duration = Duration(seconds: seconds);
       });
+    } else {
+      final seconds = duration.inSeconds + addSeconds;
+      duration = Duration(seconds: seconds);
+    }
+  }
+
+  initState() {
+    timer2 = Timer.periodic(Duration(seconds: 1), (t) {
+      setState(() {});
     });
     super.initState();
   }
-
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,12 +100,11 @@ class _PrincipalState extends State<Principal> {
                       Color(0xffd5f5e3),
                       Colors.green,
                       Colors.greenAccent,
-                      Colors.greenAccent,
-                      () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text('Proximamente...'),
-            ));
-                      }),
+                      Colors.greenAccent, () {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Proximamente...'),
+                    ));
+                  }),
                   BotonPrinc(
                       context,
                       "Reserva un equipo de computo",
@@ -144,6 +173,8 @@ class _PrincipalState extends State<Principal> {
       floatingActionButton: FloatingActionButton(
         tooltip: 'Mostrar codigo QR',
         onPressed: () {
+          isSheetOpen = true;
+          startTimer();
           RTDB_name();
           RTDB_boleta();
           showModalBottomSheet(
@@ -181,8 +212,16 @@ class _PrincipalState extends State<Principal> {
                         ),
                         QrImage(
                           //data: "" + nombre,
-                          data: srv + "|" + num_srv.toString() +"|"
-                          + nombre + "|" + boleta +"|" + fecha +"||",
+                          data: srv +
+                              "|" +
+                              num_srv.toString() +
+                              "|" +
+                              nombre +
+                              "|" +
+                              boleta +
+                              "|" +
+                              fecha +
+                              "||",
                           size: 250,
                         ),
                         // Container(
@@ -193,9 +232,11 @@ class _PrincipalState extends State<Principal> {
                         SizedBox(
                           height: 25,
                         ),
-                        Text("Tiempo restante: : 00:00",
+                        Text("Tiempo restante: ",
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.normal)),
+                        //CountDownTimer(isTimerActive),
+
                       ],
                     ),
                   ),
@@ -212,7 +253,4 @@ class _PrincipalState extends State<Principal> {
       drawer: DrawerP(context),
     );
   }
-
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

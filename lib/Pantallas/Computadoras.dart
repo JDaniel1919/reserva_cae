@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/DatosQR.dart';
+import 'package:reserva_cae/Widgets/Time.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets2.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -16,30 +17,6 @@ class Computadoras extends StatefulWidget {
   @override
   State<Computadoras> createState() => _ComputadorasState();
 }
-
-// Color setColor(int Estado) {
-//   //red is just a sample color
-//   Color color;
-//   if (Estado == 0) {
-//     color = Colors.green;
-//   } else if (Estado == 1) {
-//     color = Colors.red;
-//   } else if (Estado == 2) {
-//     color = Colors.orange;
-//   } else {
-//     color = Colors.white;
-//   }
-//   return color;
-// }
-
-// PC1.onValue.listen((DatabaseEvent event) {
-//     final data = event.snapshot.value;
-// });
-
-// PC1.onChildChanged().listen((DatabaseEvent event){
-//   // String temp = event.snapshot.value.toString();
-//   // print(temp);
-// });
 
 class _ComputadorasState extends State<Computadoras> {
   CarouselController buttonCarouselController = CarouselController();
@@ -255,7 +232,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 1 de la Sala 1",
+                                            "¿Quieres reservar la PC 1 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -264,6 +241,7 @@ class _ComputadorasState extends State<Computadoras> {
                                           num_srv = 1;
                                           estado = 2;
                                           isReserved = true;
+                                          isTimerActive = true;
                                           Update_pc("PC01", 2);
                                           showDialog<String>(
                                               context: context,
@@ -283,7 +261,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 2 de la Sala 1",
+                                            "¿Quieres reservar la PC 2 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -311,7 +289,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 3 de la Sala 1",
+                                            "¿Quieres reservar la PC 3 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -339,7 +317,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 4 de la Sala 1",
+                                            "¿Quieres reservar la PC 4 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -367,7 +345,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 5 de la Sala 1",
+                                            "¿Quieres reservar la PC 5 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -395,7 +373,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 6 de la Sala 1",
+                                            "¿Quieres reservar la PC 6 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -423,7 +401,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 7 de la Sala 1",
+                                            "¿Quieres reservar la PC 7 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -451,7 +429,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 8 de la Sala 1",
+                                            "¿Quieres reservar la PC 8 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -479,7 +457,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 9 de la Sala 1",
+                                            "¿Quieres reservar la PC 9 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -507,7 +485,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 10 de la Sala 1",
+                                            "¿Quieres reservar la PC 10 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -535,7 +513,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 11 de la Sala 1",
+                                            "¿Quieres reservar la PC 11 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -572,7 +550,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 12 de la Sala 1",
+                                            "¿Quieres reservar la PC 12 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -600,7 +578,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 13 de la Sala 1",
+                                            "¿Quieres reservar la PC 13 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -628,7 +606,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 14 de la Sala 1",
+                                            "¿Quieres reservar la PC 14 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
@@ -656,7 +634,7 @@ class _ComputadorasState extends State<Computadoras> {
                                     context: context,
                                     builder: (BuildContext context) =>
                                         Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 15 de la Sala 1",
+                                            "¿Quieres reservar la PC 15 de la Sala 1?",
                                             () {
                                           Navigator.pop(context, 'Cancelar');
                                         }, () {
