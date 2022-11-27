@@ -2,8 +2,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:reserva_cae/DatosQR.dart';
 import 'package:reserva_cae/Widgets/Time.dart';
@@ -21,28 +19,20 @@ class _PrincipalState extends State<Principal> {
   FirebaseDatabase database = FirebaseDatabase.instance;
   DatabaseReference ref = FirebaseDatabase.instance.ref();
 
-  //String srv = GenQR.srv;
-  //GenQR genqr = new GenQR("srv", 0, 3, "nombre", "boleta", "fecha");
-  // GenQR genqr = new GenQR();
-  // genqr.RTDB();
-
   @override
   late Timer timer2;
-// Bottom sheet timer
+
   Duration duration = Duration();
   Timer? timer;
+  String temp = srv +"|" +num_srv +"|" +nombre +"|" + boleta +"|" +fecha + "||";
 
-// void initState() {
-//   super.initState();
-//   controller = CountdownTimerController(endTime: endTime, onEnd: onEnd);
-// }
   //Cambio qr
-  // initState() {
-  //   timer2 = Timer.periodic(Duration(seconds: 1), (t) {
-  //     setState(() {});
-  //   });
-  //   super.initState();
-  // }
+  initState() {
+    timer2 = Timer.periodic(Duration(seconds: 1), (t) {
+      setState(() {});
+    });
+    super.initState();
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,7 +182,7 @@ class _PrincipalState extends State<Principal> {
                           //data: "" + nombre,
                           data: srv +
                               "|" +
-                              num_srv.toString() +
+                              num_srv +
                               "|" +
                               nombre +
                               "|" +
@@ -213,8 +203,8 @@ class _PrincipalState extends State<Principal> {
                         Text("Tiempo restante: ",
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.normal)),
+
                         //CountDownTimer(isTimerActive),
-                        getTimer(),
                       ],
                     ),
                   ),

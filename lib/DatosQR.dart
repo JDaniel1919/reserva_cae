@@ -1,88 +1,24 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:intl/intl.dart';
 import 'package:reserva_cae/main.dart';
 
 final now = new DateTime.now();
-String formatterFF = DateFormat('yMd').format(now);
+String formatterFF = DateFormat('dMy').format(now);
 //String formateerHH = DateFormat.Hm().format(now);
 //String nombre = "PRUEBA";
 bool isReserved = false;
 bool isTimerActive = false;
 String srv = "";
-int num_srv = 0;
+String num_srv = "";
 int estado = 3;
 String nombre = "";
 String boleta = "";
 String fecha = formatterFF;
 
-//Timer
-late CountdownTimerController controller;
-int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 50;
-
-Widget getTimer() {
-  if (isTimerActive) {
-    return Container(
-      width: 60.0,
-      padding: EdgeInsets.only(top: 3.0, right: 4.0),
-      child: CountdownTimer(
-        controller: controller,
-        endTime: endTime,
-      ),
-    );
-  } else {
-    return Container();
-  }
-}
-
-void onEnd() {
-  Update_pc("PC01", 0);
-  isTimerActive = false;
-}
-
-//nombre = "";
-//import my_prj.globals;
-
 //bool isLoggedIn = false;
-
-// class GenQR{
-
-//   // static String srv = "";
-//   // static int num_srv = 0;
-//   // static int estado = 3;
-//   // static String nombre = "";
-//   // static String boleta = "";
-//   // static String fecha = "";
-//   static late String srv;
-//   static late int num_srv;
-//   static late int estado;
-//   static late String nombre;
-//   static late String boleta;
-//   static late String fecha;
-
-// Future<String> RTDB() async{
-//   final db = FirebaseDatabase.instance.ref('Usuarios');
-//   final user = FirebaseAuth.instance.currentUser;
-//   final uid = user?.uid;
-//   final snapshot = await db.child('/$uid').get();
-//   String temp = snapshot.value.toString();
-//   return temp;
-// }
-
-//   // final snapshot = db.child('Usuarios/$user').get();
-
-//   GenQR(String srv, int num_srv, int estado, String nombre, String boleta, String fecha);
-// }
-
-// var s;
-// var a = RTDB(s);
-
-// final snapshot = db.child('Usuarios/$user').get();
-
-//GenQR(this.srv, this.num_srv, this.estado, this.nombre, this.boleta, this.fecha);
 
 void RTDB_name() async {
   final db = FirebaseDatabase.instance.ref('Usuarios');

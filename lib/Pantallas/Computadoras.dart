@@ -3,14 +3,13 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:reserva_cae/DatosQR.dart';
 import 'package:reserva_cae/Widgets/Time.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets2.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 //import 'package:intl/intl.dart';
 
 class Computadoras extends StatefulWidget {
@@ -68,7 +67,7 @@ class _ComputadorasState extends State<Computadoras> {
       setState(() {});
     });
     super.initState();
-    controller = CountdownTimerController(endTime: endTime, onEnd: onEnd);
+    //controller = CountdownTimerController(endTime: endTime, onEnd: onEnd);
 
     PC1.child('Computadoras/PC01/Estado').onValue.listen((event) {
       var snapshot = event.snapshot;
@@ -241,16 +240,16 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 1;
+                                          num_srv = "PC01";
                                           estado = 2;
                                           isReserved = true;
                                           isTimerActive = true;
                                           Update_pc("PC01", 2);
-                                          CountdownTimer(
-                                            controller: controller,
-                                            onEnd: onEnd,
-                                            endTime: endTime,
-                                          );
+                                          // CountdownTimer(
+                                          //   controller: controller,
+                                          //   onEnd: onEnd,
+                                          //   endTime: endTime,
+                                          // );
                                           showDialog<String>(
                                               context: context,
                                               builder: (BuildContext context) =>
@@ -275,7 +274,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 2;
+                                          num_srv = "PC02";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC02", 2);
@@ -303,7 +302,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 3;
+                                          num_srv = "PC03";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC03", 2);
@@ -331,7 +330,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 4;
+                                          num_srv = "PC04";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC04", 2);
@@ -359,7 +358,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 5;
+                                          num_srv = "PC05";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC05", 2);
@@ -387,7 +386,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 6;
+                                          num_srv = "PC06";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC06", 2);
@@ -415,7 +414,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 7;
+                                          num_srv = "PC07";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC07", 2);
@@ -443,7 +442,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 8;
+                                          num_srv = "PC08";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC08", 2);
@@ -471,7 +470,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 9;
+                                          num_srv = "PC09";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC09", 2);
@@ -499,7 +498,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 10;
+                                          num_srv = "PC10";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC10", 2);
@@ -527,7 +526,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 11;
+                                          num_srv = "PC11";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC11", 2);
@@ -564,7 +563,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 12;
+                                          num_srv = "PC12";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC12", 2);
@@ -592,7 +591,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 13;
+                                          num_srv = "PC13";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC13", 2);
@@ -620,7 +619,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 14;
+                                          num_srv = "PC14";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC14", 2);
@@ -648,7 +647,7 @@ class _ComputadorasState extends State<Computadoras> {
                                         }, () {
                                           Navigator.pop(context, 'OK');
                                           srv = "Computadoras";
-                                          num_srv = 15;
+                                          num_srv = "PC15";
                                           estado = 2;
                                           isReserved = true;
                                           Update_pc("PC15", 2);

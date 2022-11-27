@@ -155,7 +155,7 @@ class _CubiculosState extends State<Cubiculos> {
                                     }, () {
                                       Navigator.pop(context, 'OK');
                                       srv = "Cubiculo";
-                                      num_srv = 1;
+                                      num_srv = "CB01";
                                       estado = 2;
                                       isReserved = true;
                                       Update_cub("CB01", 2);
@@ -181,7 +181,7 @@ class _CubiculosState extends State<Cubiculos> {
                                     }, () {
                                       Navigator.pop(context, 'OK');
                                       srv = "Cubiculo";
-                                      num_srv = 2;
+                                      num_srv = "CB02";
                                       estado = 2;
                                       isReserved = true;
                                       Update_cub("CB02", 2);
@@ -207,7 +207,7 @@ class _CubiculosState extends State<Cubiculos> {
                                     }, () {
                                       Navigator.pop(context, 'OK');
                                       srv = "Cubiculo";
-                                      num_srv = 3;
+                                      num_srv = "CB03";
                                       estado = 2;
                                       isReserved = true;
                                       Update_cub("CB03", 2);
@@ -233,7 +233,7 @@ class _CubiculosState extends State<Cubiculos> {
                                     }, () {
                                       Navigator.pop(context, 'OK');
                                       srv = "Cubiculo";
-                                      num_srv = 4;
+                                      num_srv = "CB04";
                                       estado = 2;
                                       isReserved = true;
                                       Update_cub("CB04", 2);
@@ -259,7 +259,7 @@ class _CubiculosState extends State<Cubiculos> {
                                     }, () {
                                       Navigator.pop(context, 'OK');
                                       srv = "Cubiculo";
-                                      num_srv = 5;
+                                      num_srv = "CB05";
                                       estado = 2;
                                       isReserved = true;
                                       Update_cub("CB05", 2);
@@ -285,7 +285,7 @@ class _CubiculosState extends State<Cubiculos> {
                                     }, () {
                                       Navigator.pop(context, 'OK');
                                       srv = "Cubiculo";
-                                      num_srv = 6;
+                                      num_srv = "CB06";
                                       estado = 2;
                                       isReserved = true;
                                       Update_cub("CB06", 2);
@@ -311,7 +311,7 @@ class _CubiculosState extends State<Cubiculos> {
                                     }, () {
                                       Navigator.pop(context, 'OK');
                                       srv = "Cubiculo";
-                                      num_srv = 7;
+                                      num_srv = "CB07";
                                       estado = 2;
                                       isReserved = true;
                                       Update_cub("CB07", 2);
@@ -337,7 +337,7 @@ class _CubiculosState extends State<Cubiculos> {
                                     }, () {
                                       Navigator.pop(context, 'OK');
                                       srv = "Cubiculo";
-                                      num_srv = 8;
+                                      num_srv = "CB08";
                                       estado = 2;
                                       isReserved = true;
                                       Update_cub("CB08", 2);
