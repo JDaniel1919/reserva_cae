@@ -17,6 +17,7 @@ int estado = 3;
 String nombre = "";
 String boleta = "";
 String fecha = formatterFF;
+var timerQR;
 
 //bool isLoggedIn = false;
 
@@ -47,3 +48,4 @@ void Update_cub(String id, int estado) async {
   final db = FirebaseDatabase.instance.ref('Cubiculos/$id');
   await db.update({"Estado": estado});
 }
+

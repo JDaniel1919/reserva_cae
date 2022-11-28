@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:reserva_cae/DatosQR.dart';
 import 'package:reserva_cae/Widgets/Time.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets.dart';
@@ -67,6 +68,7 @@ class _ComputadorasState extends State<Computadoras> {
       setState(() {});
     });
     super.initState();
+    timerQR = Provider.of<TimerProvider>(context, listen: false);
     //controller = CountdownTimerController(endTime: endTime, onEnd: onEnd);
 
     PC1.child('Computadoras/PC01/Estado').onValue.listen((event) {
@@ -168,532 +170,577 @@ class _ComputadorasState extends State<Computadoras> {
                   MediaQuery.of(context).size.height * 0.03,
                   20,
                   MediaQuery.of(context).size.height * 0.05),
-              child: Column(children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('Reserva tu computadora',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal, fontSize: 22.0)),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(30.0),
-                  margin: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "Manten limpios los equipos",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Color(0xff800040),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Computadoras',
-                          textAlign: TextAlign.end,
+              child: Consumer<TimerProvider>(
+                builder: (context, timeprovider, widget) {
+                  return Column(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text('Reserva tu computadora',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal, fontSize: 22.0)),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(30.0),
+                        margin: const EdgeInsets.all(10.0),
+                        child: Text(
+                          "Manten limpios los equipos",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18.0)),
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Sala ' + (activeIndex + 1).toString(),
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18.0)),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                CarouselSlider(
-                  items: [
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        crossAxisCount: 4,
-                        children: <Widget>[
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 1 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC01";
-                                          estado = 2;
-                                          isReserved = true;
-                                          isTimerActive = true;
-                                          Update_pc("PC01", 2);
-                                          // CountdownTimer(
-                                          //   controller: controller,
-                                          //   onEnd: onEnd,
-                                          //   endTime: endTime,
-                                          // );
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer, "C1",
-                                  getColor(st_pc01))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 2 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC02";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC02", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer, "C2",
-                                  getColor(st_pc02))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 3 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC03";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC03", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer, "C3",
-                                  getColor(st_pc03))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 4 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC04";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC04", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer, "C4",
-                                  getColor(st_pc04))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 5 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC05";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC05", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer, "C5",
-                                  getColor(st_pc05))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 6 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC06";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC06", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer, "C6",
-                                  getColor(st_pc06))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 7 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC07";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC07", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer, "C7",
-                                  getColor(st_pc07))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 8 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC08";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC08", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer, "C8",
-                                  getColor(st_pc08))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 9 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC09";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC09", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer, "C9",
-                                  getColor(st_pc09))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 10 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC10";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC10", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer,
-                                  "C10", getColor(st_pc10))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 11 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC11";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC11", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer,
-                                  "C11", getColor(st_pc11)))
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Color(0xff800040),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text('Computadoras',
+                                textAlign: TextAlign.end,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0)),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text('Sala ' + (activeIndex + 1).toString(),
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0)),
+                          ),
                         ],
                       ),
-                    ),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        crossAxisCount: 4,
-                        children: <Widget>[
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 12 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC12";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC12", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer,
-                                  "C12", getColor(st_pc12))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 13 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC13";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC13", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer,
-                                  "C13", getColor(st_pc13))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 14 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC14";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC14", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer,
-                                  "C14", getColor(st_pc14))),
-                          GestureDetector(
-                              onTap: () {
-                                showDialog<String>(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        Msg_Reserv(BuildContext,
-                                            "¿Quieres reservar la PC 15 de la Sala 1?",
-                                            () {
-                                          Navigator.pop(context, 'Cancelar');
-                                        }, () {
-                                          Navigator.pop(context, 'OK');
-                                          srv = "Computadoras";
-                                          num_srv = "PC15";
-                                          estado = 2;
-                                          isReserved = true;
-                                          Update_pc("PC15", 2);
-                                          showDialog<String>(
-                                              context: context,
-                                              builder: (BuildContext context) =>
-                                                  MsgConfirmacion(BuildContext,
-                                                      () {
-                                                    Navigator.pop(
-                                                        context, 'OK');
-                                                  }));
-                                        }));
-                              },
-                              child: BotonReserva(context, Icons.computer,
-                                  "C15", getColor(st_pc15))),
-                        ],
+                      SizedBox(
+                        height: 15,
                       ),
-                    ),
-                  ],
-                  options: CarouselOptions(
-                    height: 300,
-                    viewportFraction: 1,
-                    initialPage: 0,
-                    reverse: false,
-                    enlargeCenterPage: true,
-                    scrollDirection: Axis.horizontal,
-                    onPageChanged: (index, reason) =>
-                        setState(() => activeIndex = index),
-                  ),
-                ),
-                buildindicator(),
-
-                // Expanded(
-                //   child: GridView.count(
-                //     crossAxisSpacing: 10,
-                //     mainAxisSpacing: 10,
-                //     crossAxisCount: 4,
-                //     children: <Widget>[
-                //       for(var i = 1;i<=12;i++) GestureDetector(
-                //         onTap: () {},
-                //         child: BotonCompu(context, Icons.computer, "C"+ i.toString()),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-              ])),
+                      CarouselSlider(
+                        items: [
+                          Expanded(
+                            child: GridView.count(
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              crossAxisCount: 4,
+                              children: <Widget>[
+                                GestureDetector(
+                                    onTap: () {
+                                      timerQR.startTimer();
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 1 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC01";
+                                                estado = 2;
+                                                isReserved = true;
+                                                isTimerActive = true;
+                                                Update_pc("PC01", 2);
+                                                // CountdownTimer(
+                                                //   controller: controller,
+                                                //   onEnd: onEnd,
+                                                //   endTime: endTime,
+                                                // );
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C1", getColor(st_pc01))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 2 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC02";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC02", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C2", getColor(st_pc02))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 3 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC03";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC03", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C3", getColor(st_pc03))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 4 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC04";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC04", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C4", getColor(st_pc04))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 5 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC05";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC05", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C5", getColor(st_pc05))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 6 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC06";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC06", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C6", getColor(st_pc06))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 7 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC07";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC07", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C7", getColor(st_pc07))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 8 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC08";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC08", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C8", getColor(st_pc08))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 9 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC09";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC09", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C9", getColor(st_pc09))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 10 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC10";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC10", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C10", getColor(st_pc10))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 11 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC11";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC11", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C11", getColor(st_pc11)))
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: GridView.count(
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              crossAxisCount: 4,
+                              children: <Widget>[
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 12 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC12";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC12", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C12", getColor(st_pc12))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 13 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC13";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC13", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C13", getColor(st_pc13))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 14 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC14";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC14", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C14", getColor(st_pc14))),
+                                GestureDetector(
+                                    onTap: () {
+                                      showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              Msg_Reserv(BuildContext,
+                                                  "¿Quieres reservar la PC 15 de la Sala 1?",
+                                                  () {
+                                                Navigator.pop(
+                                                    context, 'Cancelar');
+                                              }, () {
+                                                Navigator.pop(context, 'OK');
+                                                srv = "Computadoras";
+                                                num_srv = "PC15";
+                                                estado = 2;
+                                                isReserved = true;
+                                                Update_pc("PC15", 2);
+                                                showDialog<String>(
+                                                    context: context,
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        MsgConfirmacion(
+                                                            BuildContext, () {
+                                                          Navigator.pop(
+                                                              context, 'OK');
+                                                        }));
+                                              }));
+                                    },
+                                    child: BotonReserva(context, Icons.computer,
+                                        "C15", getColor(st_pc15))),
+                              ],
+                            ),
+                          ),
+                        ],
+                        options: CarouselOptions(
+                          height: 300,
+                          viewportFraction: 1,
+                          initialPage: 0,
+                          reverse: false,
+                          enlargeCenterPage: true,
+                          scrollDirection: Axis.horizontal,
+                          onPageChanged: (index, reason) =>
+                              setState(() => activeIndex = index),
+                        ),
+                      ),
+                      buildindicator(),
+                      (timerQR.startEnable)
+                          ? ElevatedButton(
+                              onPressed: timerQR.startTimer,
+                              child: Text('Start'),
+                            )
+                          : ElevatedButton(
+                              onPressed: null,
+                              child: Text('Start'),
+                            ),
+                      Center(
+                          child: Text(
+                            '${timerQR.hour} : ' +
+                                '${timerQR.minute} : ' +
+                                '${timerQR.seconds} ',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 40,
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
+              )),
         ),
       ),
       bottomNavigationBar: AppBarInf(context),

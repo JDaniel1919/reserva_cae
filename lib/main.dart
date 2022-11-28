@@ -1,6 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'package:reserva_cae/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Pantallas/Computadoras.dart';
@@ -12,6 +13,8 @@ import 'Pantallas/Login.dart';
 import 'Pantallas/Principal.dart';
 import 'package:flutter/rendering.dart';
 import 'package:firebase_database/firebase_database.dart';
+
+import 'Widgets/Time.dart';
 
 void main() async {
   //String nombre;
@@ -61,7 +64,10 @@ class MyApp extends StatelessWidget {
         '/Login':(context) => Login(),
         '/Registro':(context) => Registro(),
         '/Principal':(context) => Principal(),
-        '/Computadoras':(context) => Computadoras(),
+        '/Computadoras':(context) => ChangeNotifierProvider<TimerProvider>(
+        create: (context) => TimerProvider(),
+        child: Computadoras(),
+      ),
         '/Cubiculos':(context) => Cubiculos(),
         '/Perfil':(context) => Perfil()
       }
@@ -82,7 +88,10 @@ class _SplashSCState extends State<SplashSC> {
     return SplashScreen(
       seconds: 3,
       //navigateAfterSeconds: Principal(),
-      navigateAfterSeconds: Login(),
+      navigateAfterSeconds: ChangeNotifierProvider<TimerProvider>(
+        create: (context) => TimerProvider(),
+        child: Principal(),
+      ),
       image: Image.asset("assets/LogoC.png"),
       backgroundColor: Color(0xffffffff),
       gradientBackground: LinearGradient(

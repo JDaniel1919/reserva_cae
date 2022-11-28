@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -130,6 +132,7 @@ Drawer DrawerP(BuildContext context) {
 
 BottomAppBar AppBarInf(BuildContext context) {
   return BottomAppBar(
+    
     color: Color(0xffb43f6b),
     shape: const CircularNotchedRectangle(),
     child: Container(
@@ -162,3 +165,20 @@ BottomAppBar AppBarInf(BuildContext context) {
     ),
   );
 }
+
+
+// showModalBottomSheet(
+//     context: context,
+//     builder: (context) {
+//       return StatefulBuilder(
+//           builder: (BuildContext context, StateSetter setState /*You can rename this!*/) {
+//         return Container(
+//           height: heightOfModalBottomSheet,
+//           child: RaisedButton(onPressed: () {
+//             setState(() {
+//               heightOfModalBottomSheet += 10;
+//             });
+//           }),
+//         );
+//       });
+// });
