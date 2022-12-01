@@ -237,7 +237,6 @@ class _ComputadorasState extends State<Computadoras> {
                               children: <Widget>[
                                 GestureDetector(
                                     onTap: () {
-                                      timerQR.startTimer();
                                       showDialog<String>(
                                           context: context,
                                           builder: (BuildContext context) =>
@@ -254,6 +253,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 isReserved = true;
                                                 isTimerActive = true;
                                                 Update_pc("PC01", 2);
+                                                timerQR.startTimer();
                                                 // CountdownTimer(
                                                 //   controller: controller,
                                                 //   onEnd: onEnd,
@@ -287,8 +287,10 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC02";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC02", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -317,8 +319,10 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC03";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC03", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -349,6 +353,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC04", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -379,6 +384,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC05", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -409,6 +415,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC06", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -439,6 +446,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC07", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -469,6 +477,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC08", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -499,6 +508,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC09", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -529,6 +539,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC10", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -559,6 +570,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC11", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -598,6 +610,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC12", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -628,6 +641,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC13", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -658,6 +672,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC14", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -688,6 +703,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 estado = 2;
                                                 isReserved = true;
                                                 Update_pc("PC15", 2);
+                                                timerQR.startTimer();
                                                 showDialog<String>(
                                                     context: context,
                                                     builder: (BuildContext
@@ -717,26 +733,32 @@ class _ComputadorasState extends State<Computadoras> {
                         ),
                       ),
                       buildindicator(),
-                      (timerQR.startEnable)
-                          ? ElevatedButton(
-                              onPressed: timerQR.startTimer,
-                              child: Text('Start'),
-                            )
-                          : ElevatedButton(
-                              onPressed: null,
-                              child: Text('Start'),
-                            ),
-                      Center(
-                          child: Text(
-                            '${timerQR.hour} : ' +
-                                '${timerQR.minute} : ' +
-                                '${timerQR.seconds} ',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 40,
-                            ),
-                          ),
-                        ),
+                      SizedBox(
+                        height: 25,
+                      ),
+                      Sign_colores(context, Icons.computer_outlined),
+                      
+                      // (timerQR.startEnable)
+                      //     ? ElevatedButton(
+                      //         onPressed: timerQR.startTimer,
+                      //         child: Text('Start'),
+                      //       )
+                      //     : ElevatedButton(
+                      //         onPressed: null,
+                      //         child: Text('Start'),
+                      //       ),
+
+                      // Center(
+                      //     child: Text(
+                      //       '${timerQR.hour} : ' +
+                      //           '${timerQR.minute} : ' +
+                      //           '${timerQR.seconds} ',
+                      //       style: TextStyle(
+                      //         color: Colors.black,
+                      //         fontSize: 40,
+                      //       ),
+                      //     ),
+                      //   ),
                     ],
                   );
                 },

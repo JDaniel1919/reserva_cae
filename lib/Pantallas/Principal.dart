@@ -6,9 +6,11 @@ import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:reserva_cae/DatosQR.dart';
 import 'package:reserva_cae/Widgets/Time.dart';
+import 'package:sprintf/sprintf.dart';
 import '/Widgets/reusable_widgets.dart';
 import '/Widgets/reusable_widgets2.dart';
 import '/Widgets/Time.dart';
+import 'package:reserva_cae/DatosQR.dart';
 
 class Principal extends StatefulWidget {
   const Principal({Key? key}) : super(key: key);
@@ -37,13 +39,19 @@ class _PrincipalState extends State<Principal> {
   //   super.initState();
   // }
   @override
-  void initState() {
-    timer2 = Timer.periodic(Duration(seconds: 1), (t) {
-      setState(() {});
-    });
-    // TODO: implement initState
+  // void initState() {
+  //   timer2 = Timer.periodic(Duration(seconds: 1), (t) {
+  //     setState(() {});
+  //   });
+  //   // TODO: implement initState
+  //   super.initState();
+  //   //timerQR = Provider.of<TimerProvider>(context, listen: false);
+  // }
+
+  initState() {
     super.initState();
-    //timerQR = Provider.of<TimerProvider>(context, listen: false);
+    timerQR = Provider.of<TimerProvider>(context, listen: false);
+    timerQR.InitVariables();
   }
 
   Widget build(BuildContext context) {
@@ -88,6 +96,7 @@ class _PrincipalState extends State<Principal> {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text('Proximamente...'),
                         ));
+                        timer2.cancel();
                       }),
                       BotonPrinc(
                           context,
@@ -170,7 +179,7 @@ class _PrincipalState extends State<Principal> {
               builder: (BuildContext context) {
                 return StatefulBuilder(builder: (BuildContext context,
                     StateSetter setState /*You can rename this!*/) {
-                  timer2 = Timer.periodic(Duration(milliseconds: 500), (t) {
+                  timer2 = Timer.periodic(Duration(seconds: 1), (t) {
                     setState(() {});
                   });
                   return FractionallySizedBox(
@@ -191,51 +200,84 @@ class _PrincipalState extends State<Principal> {
                             ),
                           ),
                           SizedBox(
-                            height: 25,
+                            height: 45,
                           ),
                           Text("Escanea tu código QR",
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold)),
                           SizedBox(
-                            height: 20,
+                            height: 25,
                           ),
-                          QrImage(
-                            //data: "" + nombre,
-                            data: srv +
-                                "|" +
-                                num_srv +
-                                "|" +
-                                nombre +
-                                "|" +
-                                boleta +
-                                "|" +
-                                fecha +
-                                "||",
-                            size: 250,
-                          ),
+                          (isTimerActive)
+                              ? QrImage(
+                                  //data: "" + nombre,
+                                  data: srv +
+                                      "|" +
+                                      num_srv +
+                                      "|" +
+                                      nombre +
+                                      "|" +
+                                      boleta +
+                                      "|" +
+                                      fecha +
+                                      "||",
+                                  size: 250,
+                                )
+                              : Center(
+                                  child: Container(
+                                    height: 250,
+                                    width: 250,
+                                    margin: EdgeInsets.all(15),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffb43f6b),
+                                      shape: BoxShape.rectangle,
+                                      //border: Border.all(width: 2.5),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Inicia una reservacion\npara visualizar tu codigo QR",
+                                        style: TextStyle(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                           // Container(
                           //   height: 250,
                           //   width: 250,
                           //   color: Colors.black45,
                           // ),
                           SizedBox(
-                            height: 25,
+                            height: 35,
                           ),
-                          Text("Tiempo restante: ",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.normal)),
-                          //CountDownTimer(isTimerActive),
-                          Center(
-                            child: Text(
-                              '${timerQR.hour} : ' +
-                                  '${timerQR.minute} : ' +
-                                  '${timerQR.seconds} ',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 40,
-                              ),
-                            ),
-                          ),
+                          (isTimerActive)
+                              ? Column(
+                                  children: [
+                                    Text("Tiempo restante: ",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.normal)),
+                                    //CountDownTimer(isTimerActive),
+                                    Center(
+                                      child: Text(
+                                        //'${timerQR.minute} : ' + '${timerQR.seconds} ',
+                                        sprintf("%02i:%02i",
+                                            [timerQR.minute, timerQR.seconds]),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 40,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Center(
+                                  child: Text(
+                                      "Inicia una reservación para ver el tiempo restante"),
+                                )
                         ],
                       ),
                     ),

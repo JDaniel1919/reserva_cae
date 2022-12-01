@@ -27,12 +27,13 @@ void main() async {
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
   log('checking db connection!');
-  final snapshot = await db.child('Usuarios/usr01').get();
-    String temp = snapshot.value.toString();
-    print(temp + "Hola");
-    //print(snapshot.value);
+  log('Conexion exitosa');
+  // final snapshot = await db.child('Usuarios/usr01').get();
+  // String temp = snapshot.value.toString();
+  // print(temp + "Hola");
+  //print(snapshot.value);
 
-  debugPaintSizeEnabled=false;
+  debugPaintSizeEnabled = false;
   runApp(const MyApp());
 }
 
@@ -43,35 +44,37 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      showPerformanceOverlay: false,
-      title: 'Reservaciones',
-      theme: ThemeData(
-        primaryColor: Color(0xff800040),
-        primaryColorLight: Color(0xffb43f6b),
-        primaryColorDark: Color(0xff4e001a),
-        //accentColor: Color(0xffe0e0e0),
-        accentColor: Color(0xff9e9e9e),
-        appBarTheme: AppBarTheme(
-          color: Color(0xff800040),
+        showPerformanceOverlay: false,
+        title: 'Reservaciones',
+        theme: ThemeData(
+          primaryColor: Color(0xff800040),
+          primaryColorLight: Color(0xffb43f6b),
+          primaryColorDark: Color(0xff4e001a),
+          //accentColor: Color(0xffe0e0e0),
+          accentColor: Color(0xff9e9e9e),
+          appBarTheme: AppBarTheme(
+            color: Color(0xff800040),
+          ),
         ),
-      ),
-      //home: SplashSC(),
+        //home: SplashSC(),
         //home: Perfil(),
-      //home: Perfil(),
-      initialRoute: '/',
-      routes:{
-        '/':(context) => SplashSC(),
-        '/Login':(context) => Login(),
-        '/Registro':(context) => Registro(),
-        '/Principal':(context) => Principal(),
-        '/Computadoras':(context) => ChangeNotifierProvider<TimerProvider>(
-        create: (context) => TimerProvider(),
-        child: Computadoras(),
-      ),
-        '/Cubiculos':(context) => Cubiculos(),
-        '/Perfil':(context) => Perfil()
-      }
-    );
+        //home: Perfil(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => SplashSC(),
+          '/Login': (context) => Login(),
+          '/Registro': (context) => Registro(),
+          '/Principal': (context) => ChangeNotifierProvider<TimerProvider>(
+                create: (context) => TimerProvider(),
+                child: Principal(),
+              ),
+          '/Computadoras': (context) => ChangeNotifierProvider<TimerProvider>(
+                create: (context) => TimerProvider(),
+                child: Computadoras(),
+              ),
+          '/Cubiculos': (context) => Cubiculos(),
+          '/Perfil': (context) => Perfil()
+        });
   }
 }
 
@@ -90,7 +93,7 @@ class _SplashSCState extends State<SplashSC> {
       //navigateAfterSeconds: Principal(),
       navigateAfterSeconds: ChangeNotifierProvider<TimerProvider>(
         create: (context) => TimerProvider(),
-        child: Principal(),
+        child: Login(),
       ),
       image: Image.asset("assets/LogoC.png"),
       backgroundColor: Color(0xffffffff),
@@ -104,8 +107,7 @@ class _SplashSCState extends State<SplashSC> {
       ),
       photoSize: 120,
       styleTextUnderTheLoader: TextStyle(
-          fontSize: 18.0, fontWeight: FontWeight.bold,
-           color: Colors.white),
+          fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.white),
       //loaderColor: Theme.of(context).primaryColor,
       loaderColor: Colors.white,
       loadingText: Text("Cargando..."),

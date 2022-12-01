@@ -6,8 +6,8 @@ import 'package:flutter/foundation.dart';
 class TimerProvider with ChangeNotifier {
   late Timer _timer;
   int _hour = 0;
-  int _minute = 0;
-  int _seconds = 15;
+  int _minute = 1;
+  int _seconds = 25;
   bool _startEnable = true;
   bool _stopEnable = false;
   bool _continueEnable = false;
@@ -19,10 +19,17 @@ class TimerProvider with ChangeNotifier {
   bool get stopEnable => _stopEnable;
   bool get continueEnable => _continueEnable;
 
+  void InitVariables() {
+    _minute = 1;
+    _seconds = 25;
+    _startEnable = false;
+    _stopEnable = true;
+    _continueEnable = false;
+  }
+
   void startTimer() {
-    _hour = 0;
-    _minute = 0;
-    _seconds = 15;
+    _minute = 1;
+    _seconds = 25;
     _startEnable = false;
     _stopEnable = true;
     _continueEnable = false;
@@ -39,14 +46,30 @@ class TimerProvider with ChangeNotifier {
       //     _minute++;
       //   }
       // }
-      if(_seconds == 0){
-      //_timer.cancel();
-       _startEnable = true;
-      _continueEnable = true;
-      _stopEnable = false;
-      } else if (_seconds > 0) {
+      
+      if(_seconds == 0 && _minute == 0){
+        _timer.cancel();
+        Update_pc(num_srv, 0);
+        _startEnable = true;
+        _continueEnable = true;
+        _stopEnable = false;
+      }else if (_seconds > 0) {
         _seconds--;
-      }
+      } else if (_seconds == 0) {
+        _seconds = 59;
+        _minute--;
+      } 
+
+      // if (_seconds == 0) {
+      //   _timer.cancel();
+      //   Update_pc(num_srv, 0);
+      //   _startEnable = true;
+      //   _continueEnable = true;
+      //   _stopEnable = false;
+      //   // _timer = new Timer.periodic(Duration(seconds: 1));
+      // } else if (_seconds > 0) {
+      //   _seconds--;
+      // }
 
       notifyListeners();
     });
@@ -62,9 +85,9 @@ class TimerProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void whenTimeExpires() {
-
-  }
+  // void whenTimeExpires() {
+  //     Update_pc(num_srv, 0);
+  // }
 
   void continueTimer() {
     _startEnable = false;
@@ -88,5 +111,3 @@ class TimerProvider with ChangeNotifier {
     });
   }
 }
-
-

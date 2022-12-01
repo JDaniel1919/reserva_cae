@@ -132,7 +132,6 @@ Drawer DrawerP(BuildContext context) {
 
 BottomAppBar AppBarInf(BuildContext context) {
   return BottomAppBar(
-    
     color: Color(0xffb43f6b),
     shape: const CircularNotchedRectangle(),
     child: Container(
@@ -166,6 +165,59 @@ BottomAppBar AppBarInf(BuildContext context) {
   );
 }
 
+Container Sign_colores(BuildContext context, IconData icono) {
+  return Container(
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.green,
+                shape: BoxShape.circle,
+              ),
+              child: Center(child: Icon(icono, size: 25)),
+            ),
+            SizedBox(width: 10),
+            Text("Disponible", style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                shape: BoxShape.circle,
+              ),
+              child: Center(child: Icon(icono, size: 25)),
+            ),
+            SizedBox(width: 10),
+            Text("Ocupado", style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.orange,
+                shape: BoxShape.circle,
+              ),
+              child: Center(child: Icon(icono, size: 25)),
+            ),
+            SizedBox(width: 10),
+            Text("En espera", style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        )
+      ],
+    ),
+  );
+}
 
 // showModalBottomSheet(
 //     context: context,
