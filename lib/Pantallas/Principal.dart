@@ -93,7 +93,7 @@ class _PrincipalState extends State<Principal> {
                           Colors.green,
                           Colors.greenAccent,
                           Colors.greenAccent, () {
-                          Navigator.pushNamed(context, '/Reservaciones');
+                          Navigator.pushNamed(context, '/Imprimir');
                         timer2.cancel();
                       }),
                       BotonPrinc(
@@ -106,6 +106,7 @@ class _PrincipalState extends State<Principal> {
                           Colors.greenAccent,
                           Colors.greenAccent, () {
                         Navigator.pushNamed(context, '/Computadoras');
+                        timer2.cancel();
                       }),
                       BotonPrinc(
                           context,
@@ -117,6 +118,7 @@ class _PrincipalState extends State<Principal> {
                           Colors.deepOrangeAccent,
                           Colors.deepOrangeAccent, () {
                         Navigator.pushNamed(context, '/Cubiculos');
+                        timer2.cancel();
                       }),
                       SizedBox(
                         height: 5,

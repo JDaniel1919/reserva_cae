@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
@@ -13,9 +14,11 @@ class Imprimir extends StatefulWidget {
 }
 
 class _ImprimirState extends State<Imprimir> {
-  final storage = FirebaseStorage.instance.ref();
+  //final storage = FirebaseStorage.instance.ref();
   //final mountainsRef = storageRef.child("mountains.jpg");
   //final imagesRef = storage.child("Documentos");
+  //String? _directoryPath;
+  //String? _fileName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,19 +61,39 @@ class _ImprimirState extends State<Imprimir> {
                   allowedExtensions: ['docx', 'pdf', 'doc'],
                 );
 
-                // if (result != null) {
-                //   Uint8List? fileBytes = result.files.first.bytes;
-                //   String fileName = result.files.first.name;
-                //   // Upload file
-                //   //await FirebaseStorage.instance.ref('$fileName').putData(fileBytes!);
-                //   //final doc = storage.child(fileName);
+                //File file = File(result.path);
 
-                //   final mountainsRef = storage.child("/Documentos/$fileName");
-                //     // Upload raw data.
-                //   await mountainsRef.putData(fileBytes!);
+                if (result != null) {
+                  Uint8List? fileBytes = result.files.first.bytes;
+                  String fileName = result.files.first.name;
+                  final file = result.files.first;
+                  String path = (result.files.first.path).toString();
+                  print("PATH222 $file.path");
+                  print("PATH333 $path");
+                  var myFile = File(path);
+                  //File fileR = File(path);
 
-                // }
-                
+                  //Upload file
+                  await FirebaseStorage.instance
+                      .ref('/Documentos/$fileName')
+                      .putFile(myFile);
+                  showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                            title: Text("Se ha subido el documento $fileName"),
+                            content: Text(
+                                "Avisa al administrador para imprimir tu documento"),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, 'OK');
+                                },
+                                child: const Text('OK'),
+                              ),
+                            ],
+                            actionsAlignment: MainAxisAlignment.center,
+                          ));
+                }
               },
               child: Center(
                 child: Icon(

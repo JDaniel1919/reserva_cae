@@ -28,7 +28,7 @@ class _Reservaciones extends State<Reservaciones> {
             children: [
               SizedBox(height: 15),
               Container(
-                height: MediaQuery.of(context).size.height * 0.16,
+                height: MediaQuery.of(context).size.height * 0.20,
                 width: MediaQuery.of(context).size.width * 0.85,
                 //padding: const EdgeInsets.all(3.0),
                 margin: const EdgeInsets.all(8.0),
@@ -100,6 +100,22 @@ class _Reservaciones extends State<Reservaciones> {
                                     } else {
                                       Update_cub(num_srv, 0);
                                     }
+                                                      showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                            title: Text("Se ha finalizado la sesión actual"),
+                            content: Text(
+                                "$srv - $num_srv"),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, 'OK');
+                                },
+                                child: const Text('OK'),
+                              ),
+                            ],
+                            actionsAlignment: MainAxisAlignment.center,
+                          ));
                                   },
                                   child: Center(
                                     child: Icon(

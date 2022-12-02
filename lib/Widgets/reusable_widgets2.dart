@@ -59,9 +59,10 @@ Drawer DrawerP(BuildContext context) {
           title: const Text('Reservaciones activas'),
           onTap: () {
             Navigator.pop(context);
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text('Proximamente...'),
-            ));
+            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            //   content: Text('Proximamente...'),
+            // ));
+            Navigator.pushNamed(context, '/Reservaciones');
           },
         ),
         ListTile(

@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:reserva_cae/main.dart';
 
 final now = new DateTime.now();
-String formatterFF = DateFormat('dMy').format(now);
+String formatterFF = DateFormat('d/M/y').format(now);
 //String formateerHH = DateFormat.Hm().format(now);
 //String nombre = "PRUEBA";
 bool isReserved = false;

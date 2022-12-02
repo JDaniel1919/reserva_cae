@@ -79,6 +79,7 @@ class MyApp extends StatelessWidget {
                 child: Cubiculos(),),
           '/Perfil': (context) => Perfil(),
           '/Reservaciones':(context) => Reservaciones(),
+          '/Imprimir':(context) => Imprimir(),
         });
   }
 }
@@ -98,7 +99,7 @@ class _SplashSCState extends State<SplashSC> {
       //navigateAfterSeconds: Principal(),
       navigateAfterSeconds: ChangeNotifierProvider<TimerProvider>(
         create: (context) => TimerProvider(),
-        child: Imprimir(),
+        child: Login(),
       ),
       image: Image.asset("assets/LogoC.png"),
       backgroundColor: Color(0xffffffff),
