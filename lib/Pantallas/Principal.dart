@@ -93,9 +93,7 @@ class _PrincipalState extends State<Principal> {
                           Colors.green,
                           Colors.greenAccent,
                           Colors.greenAccent, () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Proximamente...'),
-                        ));
+                          Navigator.pushNamed(context, '/Reservaciones');
                         timer2.cancel();
                       }),
                       BotonPrinc(

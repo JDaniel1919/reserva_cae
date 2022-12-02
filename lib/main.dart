@@ -2,6 +2,8 @@
 import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:reserva_cae/Pantallas/Imprimir.dart';
+import 'package:reserva_cae/Pantallas/Reservaciones.dart';
 import 'package:reserva_cae/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Pantallas/Computadoras.dart';
@@ -72,8 +74,11 @@ class MyApp extends StatelessWidget {
                 create: (context) => TimerProvider(),
                 child: Computadoras(),
               ),
-          '/Cubiculos': (context) => Cubiculos(),
-          '/Perfil': (context) => Perfil()
+          '/Cubiculos': (context) => ChangeNotifierProvider<TimerProvider>(
+                create: (context) => TimerProvider(),
+                child: Cubiculos(),),
+          '/Perfil': (context) => Perfil(),
+          '/Reservaciones':(context) => Reservaciones(),
         });
   }
 }
@@ -93,7 +98,7 @@ class _SplashSCState extends State<SplashSC> {
       //navigateAfterSeconds: Principal(),
       navigateAfterSeconds: ChangeNotifierProvider<TimerProvider>(
         create: (context) => TimerProvider(),
-        child: Login(),
+        child: Imprimir(),
       ),
       image: Image.asset("assets/LogoC.png"),
       backgroundColor: Color(0xffffffff),

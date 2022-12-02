@@ -45,7 +45,6 @@ class _TextFieldPassState extends State<TextFieldPass> {
   }
 }
 
-
 TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     TextEditingController controller) {
   return TextField(
@@ -296,11 +295,11 @@ GestureDetector EditDatos(
   );
 }
 
-AlertDialog Msg_Reserv(BuildContext, String text, Function popc, Function popok) {
+AlertDialog Msg_Reserv(
+    BuildContext, String text, Function popc, Function popok) {
   return AlertDialog(
     title: const Text('Confirma tu reservación'),
-    content:
-        Text(text),
+    content: Text(text),
     actions: <Widget>[
       TextButton(
         onPressed: () {
@@ -319,12 +318,11 @@ AlertDialog Msg_Reserv(BuildContext, String text, Function popc, Function popok)
   );
 }
 
-
 AlertDialog MsgConfirmacion(BuildContext, Function popok) {
   return AlertDialog(
     title: const Text('Reservación exitosa'),
-    content:
-        Text("Recuerda que tienes 5 minutos para validar tu reservación escaneando tu código QR"),
+    content: Text(
+        "Recuerda que tienes 5 minutos para validar tu reservación escaneando tu código QR"),
     actions: <Widget>[
       TextButton(
         onPressed: () {

@@ -351,6 +351,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC04";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC04", 2);
                                                 timerQR.startTimer();
@@ -382,6 +383,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC05";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC05", 2);
                                                 timerQR.startTimer();
@@ -413,6 +415,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC06";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC06", 2);
                                                 timerQR.startTimer();
@@ -444,6 +447,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC07";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC07", 2);
                                                 timerQR.startTimer();
@@ -475,6 +479,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC08";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC08", 2);
                                                 timerQR.startTimer();
@@ -506,6 +511,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC09";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC09", 2);
                                                 timerQR.startTimer();
@@ -537,6 +543,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC10";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC10", 2);
                                                 timerQR.startTimer();
@@ -568,6 +575,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC11";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC11", 2);
                                                 timerQR.startTimer();
@@ -608,6 +616,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC12";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC12", 2);
                                                 timerQR.startTimer();
@@ -639,6 +648,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC13";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC13", 2);
                                                 timerQR.startTimer();
@@ -670,6 +680,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC14";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC14", 2);
                                                 timerQR.startTimer();
@@ -701,6 +712,7 @@ class _ComputadorasState extends State<Computadoras> {
                                                 srv = "Computadoras";
                                                 num_srv = "PC15";
                                                 estado = 2;
+                                                isTimerActive = true;
                                                 isReserved = true;
                                                 Update_pc("PC15", 2);
                                                 timerQR.startTimer();
