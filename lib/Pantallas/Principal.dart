@@ -67,7 +67,7 @@ class _PrincipalState extends State<Principal> {
           child: Padding(
               padding: EdgeInsets.fromLTRB(
                   20,
-                  MediaQuery.of(context).size.height * 0.02,
+                  MediaQuery.of(context).size.height * 0.03,
                   20,
                   MediaQuery.of(context).size.height * 0.05),
               child: Consumer<TimerProvider>(
@@ -89,11 +89,11 @@ class _PrincipalState extends State<Principal> {
                           "Agregar a cola de impresión",
                           "Imprimir",
                           Icons.print_outlined,
-                          Color(0xffd5f5e3),
-                          Colors.green,
-                          Colors.greenAccent,
-                          Colors.greenAccent, () {
-                          Navigator.pushNamed(context, '/Imprimir');
+                          Color(0xfffadbd8),
+                          Colors.orangeAccent,
+                          Colors.deepOrangeAccent,
+                          Colors.deepOrangeAccent, () {
+                        Navigator.pushNamed(context, '/Imprimir');
                         timer2.cancel();
                       }),
                       BotonPrinc(
@@ -113,15 +113,15 @@ class _PrincipalState extends State<Principal> {
                           "Reserva un cubiculo de estudio",
                           "Cubiculos",
                           Icons.book_outlined,
-                          Color(0xfffadbd8),
-                          Colors.orangeAccent,
-                          Colors.deepOrangeAccent,
-                          Colors.deepOrangeAccent, () {
+                          Color(0xffd5f5e3),
+                          Colors.green,
+                          Colors.greenAccent,
+                          Colors.greenAccent, () {
                         Navigator.pushNamed(context, '/Cubiculos');
                         timer2.cancel();
                       }),
                       SizedBox(
-                        height: 5,
+                        height: 15,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -141,7 +141,7 @@ class _PrincipalState extends State<Principal> {
                           children: [
                             Disponibilidad(
                                 context,
-                                "Alta",
+                                "",
                                 "Cubiculos",
                                 Icons.book_outlined,
                                 Color(0xfffadbd8),
@@ -149,7 +149,7 @@ class _PrincipalState extends State<Principal> {
                                 Color(0xff4e001a)),
                             Disponibilidad(
                                 context,
-                                "Baja",
+                                "",
                                 "Computadoras",
                                 Icons.computer_outlined,
                                 Color(0xffd5f5e3),
@@ -170,6 +170,8 @@ class _PrincipalState extends State<Principal> {
         onPressed: () {
           RTDB_name();
           RTDB_boleta();
+          RTDB_pass();
+          RTDB_correo();
           showModalBottomSheet(
               isScrollControlled: true,
               context: context,

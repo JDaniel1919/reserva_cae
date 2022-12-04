@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.reserva_cae">
    <application
-        android:label="reserva_cae"
+        android:label="SICAE"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

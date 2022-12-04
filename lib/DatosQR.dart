@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:reserva_cae/main.dart';
 
 final now = new DateTime.now();
-String formatterFF = DateFormat('d/M/y').format(now);
+String formatterFF = DateFormat('dMy').format(now);
 //String formateerHH = DateFormat.Hm().format(now);
 //String nombre = "PRUEBA";
 bool isReserved = false;
@@ -16,6 +16,8 @@ String num_srv = "";
 int estado = 3;
 String nombre = "";
 String boleta = "";
+String correo = "";
+String pass = "";
 String fecha = formatterFF;
 var timerQR;
 
@@ -37,6 +39,24 @@ void RTDB_boleta() async {
   final snapshot = await db.child('/$uid/Boleta').get();
   String temp = snapshot.value.toString();
   boleta = temp;
+}
+
+void RTDB_correo() async {
+  final db = FirebaseDatabase.instance.ref('Usuarios');
+  final user = FirebaseAuth.instance.currentUser;
+  final uid = user?.uid;
+  final snapshot = await db.child('/$uid/Correo').get();
+  String temp = snapshot.value.toString();
+  correo = temp;
+}
+
+void RTDB_pass() async {
+  final db = FirebaseDatabase.instance.ref('Usuarios');
+  final user = FirebaseAuth.instance.currentUser;
+  final uid = user?.uid;
+  final snapshot = await db.child('/$uid/Pass').get();
+  String temp = snapshot.value.toString();
+  pass = temp;
 }
 
 void Update_pc(String id, int estado) async {

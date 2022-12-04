@@ -1,4 +1,6 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:reserva_cae/DatosQR.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets2.dart';
 
@@ -10,6 +12,8 @@ class Perfil extends StatefulWidget {
 }
 
 class _PerfilState extends State<Perfil> {
+  final db = FirebaseDatabase.instance.ref();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,19 +58,45 @@ class _PerfilState extends State<Perfil> {
                   SizedBox(
                     height: 10,
                   ),
-                  EditDatos(context, "Nombre", "Braumi", false),
+                  EditDatos(context, "Nombre", "$nombre", false),
                   SizedBox(
                     height: 10,
                   ),
-                  EditDatos(context, "Apellido", "Abrajan", false),
+                  EditDatos(context, "Correo", "$correo", false),
                   SizedBox(
                     height: 10,
                   ),
-                  EditDatos(context, "Correo", "brau_25@gmail.com", false),
+                  EditDatos(context, "Contraseña", "$pass", true),
                   SizedBox(
-                    height: 10,
+                    height: 25,
                   ),
-                  EditDatos(context, "Contraseña", "password", true),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      width: 180,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Row(
+                          children: [
+                            Center(
+                              child: Icon(
+                                Icons.edit,
+                                size: 35,
+                              ),
+                              widthFactor: 1,
+                              heightFactor: 2,
+                            ),
+                            Text("Editar datos"),
+                    
+                          ],
+                        ),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.grey),),
+                    
+                      ),
+                    ),
+                  ),
                 ],
               )),
         ),

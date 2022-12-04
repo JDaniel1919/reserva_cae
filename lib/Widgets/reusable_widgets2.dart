@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../DatosQR.dart';
+
 //Widgets usados en varias pantallas
 
 Image logoWidget(String imageName) {
@@ -39,7 +41,7 @@ Drawer DrawerP(BuildContext context) {
       children: <Widget>[
         DrawerHeader(
           decoration: BoxDecoration(
-            color: Color(0xffbdbdbd),
+            color: Color(0xff800040),
           ),
           child: Stack(
             children: [
@@ -47,8 +49,8 @@ Drawer DrawerP(BuildContext context) {
                 bottom: 8.0,
                 left: 4.0,
                 child: Text(
-                  "Reservaciones",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
+                  "SICAE",
+                  style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold),
                 ),
               )
             ],

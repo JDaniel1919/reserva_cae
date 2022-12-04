@@ -78,7 +78,7 @@ class _RegistroState extends State<Registro> {
                           var email = _emailTextController.text;
                           var boleta = _BoletaTextController.text;
                           var nombre = _NombreTextController.text;
-                          var password = _passwordTextController.text;
+                          var password = _myController.text;
                           var yourdata = {
                             "Boleta": int.parse(boleta),
                             "Nombre": nombre,
