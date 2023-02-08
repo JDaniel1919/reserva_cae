@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:reserva_cae/Pantallas/Imprimir.dart';
 import 'package:reserva_cae/Pantallas/Reservaciones.dart';
-import 'package:reserva_cae/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Pantallas/Computadoras.dart';
 import 'package:reserva_cae/Pantallas/Cubiculos.dart';
@@ -17,11 +16,12 @@ import 'package:flutter/rendering.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'Widgets/Time.dart';
 
+//SISTEMA DE RESERVACIONES EN TIEMPO REAL CON CODIGOS QR
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   final db = FirebaseDatabase.instance.ref();
-  log('checking db connection!');
+  log('checking db connection');
   log('Conexion exitosa');
   debugPaintSizeEnabled = false;
   runApp(const MyApp());
