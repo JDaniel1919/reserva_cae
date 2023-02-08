@@ -1,2 +1,2 @@
 # reserva_cae
- Sistema de reservacion
+ Sistema de reservacion hecho con Flutter
