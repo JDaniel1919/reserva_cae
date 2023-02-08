@@ -25,29 +25,10 @@ class _PrincipalState extends State<Principal> {
 
   @override
   late Timer timer2;
-
-  //Duration duration = Duration();
-  //Timer? timer;
   String temp =
       srv + "|" + num_srv + "|" + nombre + "|" + boleta + "|" + fecha + "||";
 
-  //Cambio qr
-  // initState() {
-  //   timer2 = Timer.periodic(Duration(seconds: 1), (t) {
-  //     setState(() {});
-  //   });
-  //   super.initState();
-  // }
   @override
-  // void initState() {
-  //   timer2 = Timer.periodic(Duration(seconds: 1), (t) {
-  //     setState(() {});
-  //   });
-  //   // TODO: implement initState
-  //   super.initState();
-  //   //timerQR = Provider.of<TimerProvider>(context, listen: false);
-  // }
-
   initState() {
     super.initState();
     timerQR = Provider.of<TimerProvider>(context, listen: false);

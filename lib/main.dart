@@ -15,34 +15,20 @@ import 'Pantallas/Login.dart';
 import 'Pantallas/Principal.dart';
 import 'package:flutter/rendering.dart';
 import 'package:firebase_database/firebase_database.dart';
-
 import 'Widgets/Time.dart';
 
 void main() async {
-  //String nombre;
-  //FirebaseDatabase database = FirebaseDatabase.instance;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   final db = FirebaseDatabase.instance.ref();
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
   log('checking db connection!');
   log('Conexion exitosa');
-  // final snapshot = await db.child('Usuarios/usr01').get();
-  // String temp = snapshot.value.toString();
-  // print(temp + "Hola");
-  //print(snapshot.value);
-
   debugPaintSizeEnabled = false;
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,9 +44,6 @@ class MyApp extends StatelessWidget {
             color: Color(0xff800040),
           ),
         ),
-        //home: SplashSC(),
-        //home: Perfil(),
-        //home: Perfil(),
         initialRoute: '/',
         routes: {
           '/': (context) => SplashSC(),

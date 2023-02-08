@@ -6,6 +6,7 @@ import '/Widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets2.dart';
 
+//Registro
 class Registro extends StatefulWidget {
   const Registro({Key? key}) : super(key: key);
   @override

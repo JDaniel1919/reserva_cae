@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -10,12 +9,10 @@ import 'package:reserva_cae/Widgets/reusable_widgets.dart';
 import 'package:reserva_cae/Widgets/reusable_widgets2.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-//import 'package:intl/intl.dart';
+import 'dart:async';
 
 class Computadoras extends StatefulWidget {
   Computadoras({Key? key}) : super(key: key);
-
   @override
   State<Computadoras> createState() => _ComputadorasState();
 }
@@ -24,7 +21,6 @@ class _ComputadorasState extends State<Computadoras> {
   CarouselController buttonCarouselController = CarouselController();
   int activeIndex = 0;
   late Timer timer;
-
   var st_pc01 = 3;
   var st_pc02 = 3;
   var st_pc03 = 3;
